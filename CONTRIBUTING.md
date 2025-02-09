@@ -46,7 +46,7 @@ npm run build
 
 The schema documentation is generated from these two files:
 
-- [templates/schema.mustache.html](/templates/schema.mustache.html)
+- [templates/schema.mustache.md](/templates/schema.mustache.md)
 - [lib/schema.js](/lib/schema.js)
 
 Use the command below to genarate human-friendly docs from the schema and copy the markdown to the system

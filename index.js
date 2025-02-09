@@ -47,18 +47,18 @@ App.fetch = function (repository, cb) {
 App.templates = {};
 if (module.parent) {
   App.templates.app = hogan.compile(
-    fs.readFileSync(__dirname + "/templates/app.mustache.html").toString(),
+    fs.readFileSync(__dirname + "/templates/app.mustache.html").toString()
   );
   App.templates.build = hogan.compile(
-    fs.readFileSync(__dirname + "/templates/build.mustache.html").toString(),
+    fs.readFileSync(__dirname + "/templates/build.mustache.html").toString()
   );
   App.templates.schema = hogan.compile(
-    fs.readFileSync(__dirname + "/templates/schema.mustache.html").toString(),
+    fs.readFileSync(__dirname + "/templates/schema.mustache.md").toString()
   );
 } else {
   App.templates.app = require("./templates/app.mustache.html");
   App.templates.build = require("./templates/build.mustache.html");
-  App.templates.schema = require("./templates/schema.mustache.html");
+  App.templates.schema = require("./templates/schema.mustache.md");
 }
 
 App.addons = addons;

@@ -1,7 +1,6 @@
 "use strict";
 var fs = require("fs");
 var assert = require("assert");
-var util = require("util");
 var cheerio = require("cheerio");
 const { marked } = require("marked");
 var App = require("..");
@@ -12,7 +11,7 @@ describe("App", function () {
   beforeEach(function () {
     app = null;
     payload = JSON.parse(
-      fs.readFileSync(__dirname + "/fixtures/valid/app.json"),
+      fs.readFileSync(__dirname + "/fixtures/valid/app.json")
     );
   });
 
@@ -47,7 +46,7 @@ describe("App", function () {
         assert(prices);
         assert.equal(prices.totalPrice, "Free");
         assert.equal(prices.totalPriceInCents, 0);
-        assert(util.isArray(prices.plans));
+        assert(Array.isArray(prices.plans));
         assert.equal(prices.plans.length, 0);
         done();
       });
@@ -71,7 +70,7 @@ describe("App", function () {
           assert(remoteApp.valid);
           assert.equal(remoteApp.name, "Geosockets");
           done();
-        },
+        }
       );
     });
 
@@ -82,7 +81,7 @@ describe("App", function () {
           assert(remoteApp.valid);
           assert.equal(remoteApp.name, "Google Web Starter Kit");
           done();
-        },
+        }
       );
     });
   });
@@ -99,8 +98,10 @@ describe("App", function () {
       });
 
       it("renders app name in an H2 tag", function () {
-        var $ = cheerio.load(App.templates.app.render(App.example));
-        assert.equal($("h2").text(), App.example.name);
+        const rendered = App.templates.app.render(App.example);
+        console.log(rendered);
+        const $ = cheerio.load(rendered);
+        assert.equal($("h2").text().trim(), App.example.name);
       });
     });
 
@@ -115,10 +116,10 @@ describe("App", function () {
         assert(App.templates.schema);
       });
 
-      it("produces github-formatted markdown intead of HTML", function () {
-        var $ = cheerio.load(
-          marked.parse(App.templates.schema.render(App.schema)),
-        );
+      it("produces github-formatted markdown instead of HTML", function () {
+        const templ = App.templates.schema.render(App.schema);
+        const html = marked.parse(templ);
+        var $ = cheerio.load(html);
         assert.equal($("h2").first().text(), "Example app.json");
         assert.equal($("h2").last().text(), "Schema Reference");
       });

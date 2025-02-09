@@ -1,6 +1,5 @@
 "use strict";
 var assert = require("assert");
-var util = require("util");
 var addons = require("../lib/addons");
 
 describe("addons.getPlan()", function () {
@@ -36,14 +35,14 @@ describe("addons.getPlan()", function () {
     it("returns a logo URL when given an addon:plan slug", function () {
       assert.equal(
         plan.logo,
-        "https://addons.heroku.com/addons/mongohq/icons/original.png",
+        "https://addons.heroku.com/addons/mongohq/icons/original.png"
       );
     });
 
     it("returns a logo URL given a plan-free slug", function () {
       assert.equal(
         plan.logo,
-        "https://addons.heroku.com/addons/mongohq/icons/original.png",
+        "https://addons.heroku.com/addons/mongohq/icons/original.png"
       );
     });
   });
@@ -64,12 +63,12 @@ describe("addons.getPrices()", function () {
 
     it("accepts an array and returns an object", function () {
       assert(typeof prices === "object");
-      assert(!util.isArray(prices));
-      assert(util.isArray(prices.plans));
+      assert(!Array.isArray(prices));
+      assert(Array.isArray(prices.plans));
     });
 
     it("returns an array of plans in the prices object", function () {
-      assert(util.isArray(prices.plans));
+      assert(Array.isArray(prices.plans));
     });
 
     it("handles addon:plan formatted slugs", function () {
@@ -98,7 +97,7 @@ describe("addons.getPrices()", function () {
 
   it("accepts an emtpy array", function (done) {
     addons.getPrices([], function (err, prices) {
-      assert(util.isArray(prices.plans));
+      assert(Array.isArray(prices.plans));
       assert.equal(prices.totalPriceInCents, 0);
       assert.equal(prices.totalPrice, "Free");
       done();
@@ -142,7 +141,7 @@ describe("addons.getPrices()", function () {
       assert(prices);
       assert.equal(prices.totalPrice, "Free");
       assert.equal(prices.totalPriceInCents, 0);
-      assert(util.isArray(prices.plans));
+      assert(Array.isArray(prices.plans));
       assert.equal(prices.plans.length, 0);
       done();
     });
@@ -153,7 +152,7 @@ describe("addons.getPrices()", function () {
       assert(prices);
       assert.equal(prices.totalPrice, "Free");
       assert.equal(prices.totalPriceInCents, 0);
-      assert(util.isArray(prices.plans));
+      assert(Array.isArray(prices.plans));
       assert.equal(prices.plans.length, 0);
       done();
     });

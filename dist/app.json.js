@@ -33,7 +33,7 @@
           e,
           t,
           n,
-          r,
+          r
         );
       }
       return n[o].exports;
@@ -76,7 +76,7 @@
                 repository = bitbucket(repository);
               } else {
                 return cb(
-                  "A valid GitHub or Bitbucket URL is required: " + repository,
+                  "A valid GitHub or Bitbucket URL is required: " + repository
                 );
               }
 
@@ -99,24 +99,22 @@
               App.templates.app = hogan.compile(
                 fs
                   .readFileSync(__dirname + "/templates/app.mustache.html")
-                  .toString(),
+                  .toString()
               );
               App.templates.build = hogan.compile(
                 fs
                   .readFileSync(__dirname + "/templates/build.mustache.html")
-                  .toString(),
+                  .toString()
               );
               App.templates.schema = hogan.compile(
                 fs
-                  .readFileSync(__dirname + "/templates/schema.mustache.html")
-                  .toString(),
+                  .readFileSync(__dirname + "/templates/schema.mustache.md")
+                  .toString()
               );
             } else {
               App.templates.app = _dereq_("./templates/app.mustache.html");
               App.templates.build = _dereq_("./templates/build.mustache.html");
-              App.templates.schema = _dereq_(
-                "./templates/schema.mustache.html",
-              );
+              App.templates.schema = _dereq_("./templates/schema.mustache.md");
             }
 
             App.addons = addons;
@@ -128,7 +126,7 @@
           "./lib/schema": 4,
           "./templates/app.mustache.html": 73,
           "./templates/build.mustache.html": 74,
-          "./templates/schema.mustache.html": 75,
+          "./templates/schema.mustache.md": 75,
           "bitbucket-url-to-object": 8,
           fs: 9,
           "github-url-to-object": 14,
@@ -178,7 +176,7 @@
                   "https://api.heroku.com/addon-services/" +
                     addon +
                     "/plans/" +
-                    plan,
+                    plan
                 )
                 .set("Accept", "application/vnd.heroku+json; version=3")
                 .end(function (err, res) {
@@ -436,7 +434,7 @@
               jsonDoc[prop.name] = prop.example;
               prop.exampleJSON = JSON.stringify(jsonDoc, null, 2);
               return prop;
-            },
+            }
           );
 
           module.exports = schema;
@@ -473,7 +471,7 @@
                   charCode = input.charCodeAt((idx += 3 / 4));
                   if (charCode > 0xff) {
                     throw new InvalidCharacterError(
-                      "'btoa' failed: The string to be encoded contains characters outside of the Latin1 range.",
+                      "'btoa' failed: The string to be encoded contains characters outside of the Latin1 range."
                     );
                   }
                   block = (block << 8) | charCode;
@@ -488,7 +486,7 @@
                 input = input.replace(/=+$/, "");
                 if (input.length % 4 == 1) {
                   throw new InvalidCharacterError(
-                    "'atob' failed: The string to be decoded is not correctly encoded.",
+                    "'atob' failed: The string to be decoded is not correctly encoded."
                   );
                 }
                 for (
@@ -503,7 +501,7 @@
                   // convert the first 8 bits to one ascii character
                   bc++ % 4)
                     ? (output += String.fromCharCode(
-                        255 & (bs >> ((-2 * bc) & 6)),
+                        255 & (bs >> ((-2 * bc) & 6))
                       ))
                     : 0
                 ) {
@@ -752,7 +750,7 @@
                   },
                   function (err) {
                     callback(err, results);
-                  },
+                  }
                 );
               };
               async.map = doParallel(_asyncMap);
@@ -778,7 +776,7 @@
                   },
                   function (err) {
                     callback(err, memo);
-                  },
+                  }
                 );
               };
               // inject alias
@@ -818,10 +816,10 @@
                         }),
                         function (x) {
                           return x.value;
-                        },
-                      ),
+                        }
+                      )
                     );
-                  },
+                  }
                 );
               };
               async.filter = doParallel(_filter);
@@ -853,10 +851,10 @@
                         }),
                         function (x) {
                           return x.value;
-                        },
-                      ),
+                        }
+                      )
                     );
-                  },
+                  }
                 );
               };
               async.reject = doParallel(_reject);
@@ -877,7 +875,7 @@
                   },
                   function (err) {
                     main_callback();
-                  },
+                  }
                 );
               };
               async.detect = doParallel(_detect);
@@ -897,7 +895,7 @@
                   },
                   function (err) {
                     main_callback(false);
-                  },
+                  }
                 );
               };
               // any alias
@@ -917,7 +915,7 @@
                   },
                   function (err) {
                     main_callback(true);
-                  },
+                  }
                 );
               };
               // all alias
@@ -948,10 +946,10 @@
                         null,
                         _map(results.sort(fn), function (x) {
                           return x.value;
-                        }),
+                        })
                       );
                     }
-                  },
+                  }
                 );
               };
 
@@ -1023,7 +1021,7 @@
                         function (a, x) {
                           return a && results.hasOwnProperty(x);
                         },
-                        true,
+                        true
                       ) && !results.hasOwnProperty(k)
                     );
                   };
@@ -1079,7 +1077,7 @@
                 callback = callback || function () {};
                 if (!_isArray(tasks)) {
                   var err = new Error(
-                    "First argument to waterfall must be an array of functions",
+                    "First argument to waterfall must be an array of functions"
                   );
                   return callback(err);
                 }
@@ -1124,7 +1122,7 @@
                         });
                       }
                     },
-                    callback,
+                    callback
                   );
                 } else {
                   var results = {};
@@ -1142,7 +1140,7 @@
                     },
                     function (err) {
                       callback(err, results);
-                    },
+                    }
                   );
                 }
               };
@@ -1151,7 +1149,7 @@
                 _parallel(
                   { map: async.map, each: async.each },
                   tasks,
-                  callback,
+                  callback
                 );
               };
 
@@ -1159,7 +1157,7 @@
                 _parallel(
                   { map: _mapLimit(limit), each: _eachLimit(limit) },
                   tasks,
-                  callback,
+                  callback
                 );
               };
 
@@ -1179,7 +1177,7 @@
                         });
                       }
                     },
-                    callback,
+                    callback
                   );
                 } else {
                   var results = {};
@@ -1197,7 +1195,7 @@
                     },
                     function (err) {
                       callback(err, results);
-                    },
+                    }
                   );
                 }
               };
@@ -1225,7 +1223,7 @@
                 return function () {
                   return fn.apply(
                     null,
-                    args.concat(Array.prototype.slice.call(arguments)),
+                    args.concat(Array.prototype.slice.call(arguments))
                   );
                 };
               };
@@ -1242,7 +1240,7 @@
                   },
                   function (err) {
                     callback(err, r);
-                  },
+                  }
                 );
               };
               async.concat = doParallel(_concat);
@@ -1502,7 +1500,7 @@
                           }
                         }
                       },
-                    ]),
+                    ])
                   );
                 };
               };
@@ -1543,7 +1541,7 @@
                             q[i].apply(null, arguments);
                           }
                         },
-                      ]),
+                      ])
                     );
                   }
                 };
@@ -1591,16 +1589,16 @@
                             var err = arguments[0];
                             var nextargs = Array.prototype.slice.call(
                               arguments,
-                              1,
+                              1
                             );
                             cb(err, nextargs);
                           },
-                        ]),
+                        ])
                       );
                     },
                     function (err, results) {
                       callback.apply(that, [err].concat(results));
-                    },
+                    }
                   );
                 };
               };
@@ -1608,7 +1606,7 @@
               async.compose = function (/* functions... */) {
                 return async.seq.apply(
                   null,
-                  Array.prototype.reverse.call(arguments),
+                  Array.prototype.reverse.call(arguments)
                 );
               };
 
@@ -1622,7 +1620,7 @@
                     function (fn, cb) {
                       fn.apply(that, args.concat([cb]));
                     },
-                    callback,
+                    callback
                   );
                 };
                 if (arguments.length > 2) {
@@ -1700,7 +1698,7 @@
 
               if (b64.length % 4 > 0) {
                 throw new Error(
-                  "Invalid string. Length must be a multiple of 4",
+                  "Invalid string. Length must be a multiple of 4"
                 );
               }
 
@@ -1828,13 +1826,13 @@
             if (!repo_url) return null;
 
             var shorthand = repo_url.match(
-              /^([\w-_]+)\/([\w-_\.]+)#?([\w-_\.]+)?$/,
+              /^([\w-_]+)\/([\w-_\.]+)#?([\w-_\.]+)?$/
             );
             var mediumhand = repo_url.match(
-              /^bitbucket:([\w-_]+)\/([\w-_\.]+)#?([\w-_\.]+)?$/,
+              /^bitbucket:([\w-_]+)\/([\w-_\.]+)#?([\w-_\.]+)?$/
             );
             var antiquated = repo_url.match(
-              /^git@[\w-_\.]+:([\w-_]+)\/([\w-_\.]+)$/,
+              /^git@[\w-_\.]+:([\w-_]+)\/([\w-_\.]+)$/
             );
 
             if (shorthand) {
@@ -1864,32 +1862,32 @@
               "https://bitbucket.org/%s/%s/get/%s.tar.gz",
               obj.user,
               obj.repo,
-              obj.branch,
+              obj.branch
             );
 
             if (obj.branch === "master") {
               obj.https_url = util.format(
                 "https://bitbucket.org/%s/%s",
                 obj.user,
-                obj.repo,
+                obj.repo
               );
               obj.travis_url = util.format(
                 "https://travis-ci.org/%s/%s",
                 obj.user,
-                obj.repo,
+                obj.repo
               );
             } else {
               obj.https_url = util.format(
                 "https://bitbucket.org/%s/%s/branch/%s",
                 obj.user,
                 obj.repo,
-                obj.branch,
+                obj.branch
               );
               obj.travis_url = util.format(
                 "https://travis-ci.org/%s/%s?branch=%s",
                 obj.user,
                 obj.repo,
-                obj.branch,
+                obj.branch
               );
             }
 
@@ -2014,7 +2012,7 @@
                 this.charBuffer,
                 0,
                 buffer.length - lenIncomplete,
-                end,
+                end
               );
               this.charReceived = lenIncomplete;
               end -= lenIncomplete;
@@ -2032,7 +2030,7 @@
               this.charBuffer.copy(this.charBuffer, size, 0, size);
               this.charBuffer.write(
                 charStr.charAt(charStr.length - 1),
-                this.encoding,
+                this.encoding
               );
               return charStr.substring(0, end);
             }
@@ -2182,7 +2180,7 @@
               length = coerce(subject.length); // assume that object is array-like
             else
               throw new Error(
-                "First argument needs to be a number, array or string.",
+                "First argument needs to be a number, array or string."
               );
 
             var buf;
@@ -2285,7 +2283,7 @@
             assert(
               isArray(list),
               "Usage: Buffer.concat(list, [totalLength])\n" +
-                "list should be an Array.",
+                "list should be an Array."
             );
 
             if (list.length === 0) {
@@ -2348,7 +2346,7 @@
               utf8ToBytes(string),
               buf,
               offset,
-              length,
+              length
             ));
             return charsWritten;
           }
@@ -2358,7 +2356,7 @@
               asciiToBytes(string),
               buf,
               offset,
-              length,
+              length
             ));
             return charsWritten;
           }
@@ -2372,7 +2370,7 @@
               base64ToBytes(string),
               buf,
               offset,
-              length,
+              length
             ));
             return charsWritten;
           }
@@ -2382,7 +2380,7 @@
               utf16leToBytes(string),
               buf,
               offset,
-              length,
+              length
             ));
             return charsWritten;
           }
@@ -2508,11 +2506,11 @@
             assert(end >= start, "sourceEnd < sourceStart");
             assert(
               target_start >= 0 && target_start < target.length,
-              "targetStart out of bounds",
+              "targetStart out of bounds"
             );
             assert(
               start >= 0 && start < source.length,
-              "sourceStart out of bounds",
+              "sourceStart out of bounds"
             );
             assert(end >= 0 && end <= source.length, "sourceEnd out of bounds");
 
@@ -2611,7 +2609,7 @@
           // `get` will be removed in Node 0.13+
           Buffer.prototype.get = function (offset) {
             console.log(
-              ".get() is deprecated. Access using array indexes instead.",
+              ".get() is deprecated. Access using array indexes instead."
             );
             return this.readUInt8(offset);
           };
@@ -2619,7 +2617,7 @@
           // `set` will be removed in Node 0.13+
           Buffer.prototype.set = function (v, offset) {
             console.log(
-              ".set() is deprecated. Access using array indexes instead.",
+              ".set() is deprecated. Access using array indexes instead."
             );
             return this.writeUInt8(v, offset);
           };
@@ -2629,7 +2627,7 @@
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset < this.length,
-                "Trying to read beyond buffer length",
+                "Trying to read beyond buffer length"
               );
             }
 
@@ -2642,12 +2640,12 @@
             if (!noAssert) {
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset + 1 < buf.length,
-                "Trying to read beyond buffer length",
+                "Trying to read beyond buffer length"
               );
             }
 
@@ -2677,12 +2675,12 @@
             if (!noAssert) {
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset + 3 < buf.length,
-                "Trying to read beyond buffer length",
+                "Trying to read beyond buffer length"
               );
             }
 
@@ -2717,7 +2715,7 @@
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset < this.length,
-                "Trying to read beyond buffer length",
+                "Trying to read beyond buffer length"
               );
             }
 
@@ -2732,12 +2730,12 @@
             if (!noAssert) {
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset + 1 < buf.length,
-                "Trying to read beyond buffer length",
+                "Trying to read beyond buffer length"
               );
             }
 
@@ -2762,12 +2760,12 @@
             if (!noAssert) {
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset + 3 < buf.length,
-                "Trying to read beyond buffer length",
+                "Trying to read beyond buffer length"
               );
             }
 
@@ -2792,11 +2790,11 @@
             if (!noAssert) {
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(
                 offset + 3 < buf.length,
-                "Trying to read beyond buffer length",
+                "Trying to read beyond buffer length"
               );
             }
 
@@ -2815,11 +2813,11 @@
             if (!noAssert) {
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(
                 offset + 7 < buf.length,
-                "Trying to read beyond buffer length",
+                "Trying to read beyond buffer length"
               );
             }
 
@@ -2840,7 +2838,7 @@
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset < this.length,
-                "trying to write beyond buffer length",
+                "trying to write beyond buffer length"
               );
               verifuint(value, 0xff);
             }
@@ -2855,12 +2853,12 @@
               assert(value !== undefined && value !== null, "missing value");
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset + 1 < buf.length,
-                "trying to write beyond buffer length",
+                "trying to write beyond buffer length"
               );
               verifuint(value, 0xffff);
             }
@@ -2888,12 +2886,12 @@
               assert(value !== undefined && value !== null, "missing value");
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset + 3 < buf.length,
-                "trying to write beyond buffer length",
+                "trying to write beyond buffer length"
               );
               verifuint(value, 0xffffffff);
             }
@@ -2921,7 +2919,7 @@
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset < this.length,
-                "Trying to write beyond buffer length",
+                "Trying to write beyond buffer length"
               );
               verifsint(value, 0x7f, -0x80);
             }
@@ -2937,12 +2935,12 @@
               assert(value !== undefined && value !== null, "missing value");
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset + 1 < buf.length,
-                "Trying to write beyond buffer length",
+                "Trying to write beyond buffer length"
               );
               verifsint(value, 0x7fff, -0x8000);
             }
@@ -2958,7 +2956,7 @@
                 0xffff + value + 1,
                 offset,
                 littleEndian,
-                noAssert,
+                noAssert
               );
           }
 
@@ -2975,12 +2973,12 @@
               assert(value !== undefined && value !== null, "missing value");
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset + 3 < buf.length,
-                "Trying to write beyond buffer length",
+                "Trying to write beyond buffer length"
               );
               verifsint(value, 0x7fffffff, -0x80000000);
             }
@@ -2996,7 +2994,7 @@
                 0xffffffff + value + 1,
                 offset,
                 littleEndian,
-                noAssert,
+                noAssert
               );
           }
 
@@ -3013,17 +3011,17 @@
               assert(value !== undefined && value !== null, "missing value");
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset + 3 < buf.length,
-                "Trying to write beyond buffer length",
+                "Trying to write beyond buffer length"
               );
               verifIEEE754(
                 value,
                 3.4028234663852886e38,
-                -3.4028234663852886e38,
+                -3.4028234663852886e38
               );
             }
 
@@ -3046,17 +3044,17 @@
               assert(value !== undefined && value !== null, "missing value");
               assert(
                 typeof littleEndian === "boolean",
-                "missing or invalid endian",
+                "missing or invalid endian"
               );
               assert(offset !== undefined && offset !== null, "missing offset");
               assert(
                 offset + 7 < buf.length,
-                "Trying to write beyond buffer length",
+                "Trying to write beyond buffer length"
               );
               verifIEEE754(
                 value,
                 1.7976931348623157e308,
-                -1.7976931348623157e308,
+                -1.7976931348623157e308
               );
             }
 
@@ -3086,7 +3084,7 @@
 
             assert(
               typeof value === "number" && !isNaN(value),
-              "value is not a number",
+              "value is not a number"
             );
             assert(end >= start, "end < start");
 
@@ -3131,7 +3129,7 @@
               }
             } else {
               throw new Error(
-                "Buffer.toArrayBuffer not supported in this browser",
+                "Buffer.toArrayBuffer not supported in this browser"
               );
             }
           };
@@ -3316,36 +3314,36 @@
           function verifuint(value, max) {
             assert(
               typeof value === "number",
-              "cannot write a non-number as a number",
+              "cannot write a non-number as a number"
             );
             assert(
               value >= 0,
-              "specified a negative value for writing an unsigned value",
+              "specified a negative value for writing an unsigned value"
             );
             assert(value <= max, "value is larger than maximum value for type");
             assert(
               Math.floor(value) === value,
-              "value has a fractional component",
+              "value has a fractional component"
             );
           }
 
           function verifsint(value, max, min) {
             assert(
               typeof value === "number",
-              "cannot write a non-number as a number",
+              "cannot write a non-number as a number"
             );
             assert(value <= max, "value larger than maximum allowed value");
             assert(value >= min, "value smaller than minimum allowed value");
             assert(
               Math.floor(value) === value,
-              "value has a fractional component",
+              "value has a fractional component"
             );
           }
 
           function verifIEEE754(value, max, min) {
             assert(
               typeof value === "number",
-              "cannot write a non-number as a number",
+              "cannot write a non-number as a number"
             );
             assert(value <= max, "value larger than maximum allowed value");
             assert(value >= min, "value smaller than minimum allowed value");
@@ -3634,7 +3632,7 @@
               this.emit(
                 "newListener",
                 type,
-                isFunction(listener.listener) ? listener.listener : listener,
+                isFunction(listener.listener) ? listener.listener : listener
               );
 
             if (!this._events[type])
@@ -3662,7 +3660,7 @@
                   "(node) warning: possible EventEmitter memory " +
                     "leak detected. %d listeners added. " +
                     "Use emitter.setMaxListeners() to increase limit.",
-                  this._events[type].length,
+                  this._events[type].length
                 );
                 if (typeof console.trace === "function") {
                   // not supported in IE 10
@@ -3829,13 +3827,13 @@
             if (!repo_url) return null;
 
             var shorthand = repo_url.match(
-              /^([\w-_]+)\/([\w-_\.]+)#?([\w-_\.]+)?$/,
+              /^([\w-_]+)\/([\w-_\.]+)#?([\w-_\.]+)?$/
             );
             var mediumhand = repo_url.match(
-              /^github:([\w-_]+)\/([\w-_\.]+)#?([\w-_\.]+)?$/,
+              /^github:([\w-_]+)\/([\w-_\.]+)#?([\w-_\.]+)?$/
             );
             var antiquated = repo_url.match(
-              /^git@[\w-_\.]+:([\w-_]+)\/([\w-_\.]+)$/,
+              /^git@[\w-_\.]+:([\w-_]+)\/([\w-_\.]+)$/
             );
 
             if (shorthand) {
@@ -3860,7 +3858,7 @@
               if (!parsedURL.hostname) return null;
               if (parsedURL.hostname !== "github.com") return null;
               var parts = parsedURL.pathname.match(
-                /^\/([\w-_]+)\/([\w-_\.]+)(\/tree\/[\w-_\.\/]+)?(\/blob\/[\w-_\.\/]+)?/,
+                /^\/([\w-_]+)\/([\w-_\.]+)(\/tree\/[\w-_\.\/]+)?(\/blob\/[\w-_\.\/]+)?/
               );
               // ([\w-_\.]+)
               if (!parts) return null;
@@ -3884,50 +3882,50 @@
               "https://api.github.com/repos/%s/%s/tarball/%s",
               obj.user,
               obj.repo,
-              obj.branch,
+              obj.branch
             );
 
             if (obj.branch === "master") {
               obj.https_url = util.format(
                 "https://github.com/%s/%s",
                 obj.user,
-                obj.repo,
+                obj.repo
               );
               obj.travis_url = util.format(
                 "https://travis-ci.org/%s/%s",
                 obj.user,
-                obj.repo,
+                obj.repo
               );
               obj.zip_url = util.format(
                 "https://github.com/%s/%s/archive/master.zip",
                 obj.user,
-                obj.repo,
+                obj.repo
               );
             } else {
               obj.https_url = util.format(
                 "https://github.com/%s/%s/tree/%s",
                 obj.user,
                 obj.repo,
-                obj.branch,
+                obj.branch
               );
               obj.travis_url = util.format(
                 "https://travis-ci.org/%s/%s?branch=%s",
                 obj.user,
                 obj.repo,
-                obj.branch,
+                obj.branch
               );
               obj.zip_url = util.format(
                 "https://github.com/%s/%s/archive/%s.zip",
                 obj.user,
                 obj.repo,
-                obj.branch,
+                obj.branch
               );
             }
 
             obj.api_url = util.format(
               "https://api.github.com/repos/%s/%s",
               obj.user,
-              obj.repo,
+              obj.repo
             );
 
             return obj;
@@ -4036,7 +4034,7 @@
                 var close = "=" + ctag,
                   closeIndex = text.indexOf(close, index),
                   delimiters = trim(
-                    text.substring(text.indexOf("=", index) + 1, closeIndex),
+                    text.substring(text.indexOf("=", index) + 1, closeIndex)
                   ).split(" ");
 
                 otag = delimiters[0];
@@ -4164,7 +4162,7 @@
                     !isCloser(token.n, opener.n, customTags)
                   ) {
                     throw new Error(
-                      "Nesting error: " + opener.n + " vs. " + token.n,
+                      "Nesting error: " + opener.n + " vs. " + token.n
                     );
                   }
                   opener.end = token.i;
@@ -4209,7 +4207,7 @@
                 new Function("c", "p", "i", code),
                 text,
                 Hogan,
-                options,
+                options
               );
             };
 
@@ -4236,13 +4234,13 @@
                     chooseMethod(tree[i].n),
                     tree[i].i,
                     tree[i].end,
-                    tree[i].otag + " " + tree[i].ctag,
+                    tree[i].otag + " " + tree[i].ctag
                   );
                 } else if (tag == "^") {
                   code += invertedSection(
                     tree[i].nodes,
                     tree[i].n,
-                    chooseMethod(tree[i].n),
+                    chooseMethod(tree[i].n)
                   );
                 } else if (tag == "<" || tag == ">") {
                   code += partial(tree[i]);
@@ -4345,7 +4343,7 @@
               t = this.generate(
                 this.parse(this.scan(text, options.delimiters), text, options),
                 text,
-                options,
+                options
               );
               return (this.cache[key] = t);
             };
@@ -4579,7 +4577,7 @@
                     cx,
                     partials,
                     this.text.substring(start, end),
-                    tags,
+                    tags
                   );
                 }
 
@@ -4594,7 +4592,7 @@
                       cx,
                       partials,
                       this.text.substring(start, end),
-                      tags,
+                      tags
                     );
                   }
                 }
@@ -4837,7 +4835,7 @@
               //basic auth
               this.setHeader(
                 "Authorization",
-                "Basic " + Base64.btoa(params.auth),
+                "Basic " + Base64.btoa(params.auth)
               );
             }
 
@@ -5287,7 +5285,7 @@
           function deprecated(name) {
             return function () {
               throw new Error(
-                "Function " + name + " is deprecated and cannot be used.",
+                "Function " + name + " is deprecated and cannot be used."
               );
             };
           }
@@ -5298,10 +5296,10 @@
           module.exports.JSON_SCHEMA = _dereq_("./js-yaml/schema/json");
           module.exports.CORE_SCHEMA = _dereq_("./js-yaml/schema/core");
           module.exports.DEFAULT_SAFE_SCHEMA = _dereq_(
-            "./js-yaml/schema/default_safe",
+            "./js-yaml/schema/default_safe"
           );
           module.exports.DEFAULT_FULL_SCHEMA = _dereq_(
-            "./js-yaml/schema/default_full",
+            "./js-yaml/schema/default_full"
           );
           module.exports.load = loader.load;
           module.exports.loadAll = loader.loadAll;
@@ -5315,7 +5313,7 @@
           module.exports.MINIMAL_SCHEMA = _dereq_("./js-yaml/schema/failsafe");
           module.exports.SAFE_SCHEMA = _dereq_("./js-yaml/schema/default_safe");
           module.exports.DEFAULT_SCHEMA = _dereq_(
-            "./js-yaml/schema/default_full",
+            "./js-yaml/schema/default_full"
           );
 
           // Deprecated functions from JS-YAML 1.x.x
@@ -5516,7 +5514,7 @@
               length = 8;
             } else {
               throw new YAMLException(
-                "code point within a string may not be greater than 0xFFFFFFFF",
+                "code point within a string may not be greater than 0xFFFFFFFF"
               );
             }
 
@@ -5537,7 +5535,7 @@
               : options["flowLevel"];
             this.styleMap = compileStyleMap(
               this.schema,
-              options["styles"] || null,
+              options["styles"] || null
             );
             this.sortKeys = options["sortKeys"] || false;
             this.lineWidth = options["lineWidth"] || 80;
@@ -5692,7 +5690,7 @@
             singleLineOnly,
             indentPerLevel,
             lineWidth,
-            testAmbiguousType,
+            testAmbiguousType
           ) {
             var i;
             var char;
@@ -5791,7 +5789,7 @@
                   ? -1
                   : Math.max(
                       Math.min(state.lineWidth, 40),
-                      state.lineWidth - indent,
+                      state.lineWidth - indent
                     );
 
               // Without knowing if keys are implicit/explicit, assume implicit for safety.
@@ -5809,7 +5807,7 @@
                   singleLineOnly,
                   state.indent,
                   lineWidth,
-                  testAmbiguity,
+                  testAmbiguity
                 )
               ) {
                 case STYLE_PLAIN:
@@ -5827,14 +5825,14 @@
                     ">" +
                     blockHeader(string, state.indent) +
                     dropEndingNewline(
-                      indentString(foldString(string, lineWidth), indent),
+                      indentString(foldString(string, lineWidth), indent)
                     )
                   );
                 case STYLE_DOUBLE:
                   return '"' + escapeString(string, lineWidth) + '"';
                 default:
                   throw new YAMLException(
-                    "impossible error: invalid scalar style",
+                    "impossible error: invalid scalar style"
                   );
               }
             })();
@@ -6074,7 +6072,7 @@
             } else if (state.sortKeys) {
               // Something is wrong
               throw new YAMLException(
-                "sortKeys must be a boolean or a function",
+                "sortKeys must be a boolean or a function"
               );
             }
 
@@ -6170,7 +6168,7 @@
                         type.tag +
                         '> tag resolver accepts not "' +
                         style +
-                        '" style',
+                        '" style'
                     );
                   }
 
@@ -6260,7 +6258,7 @@
               } else {
                 if (state.skipInvalid) return false;
                 throw new YAMLException(
-                  "unacceptable kind of an object to dump " + type,
+                  "unacceptable kind of an object to dump " + type
                 );
               }
 
@@ -6321,7 +6319,7 @@
                     inspectNode(
                       object[objectKeyList[index]],
                       objects,
-                      duplicatesIndexes,
+                      duplicatesIndexes
                     );
                   }
                 }
@@ -6345,7 +6343,7 @@
           function safeDump(input, options) {
             return dump(
               input,
-              common.extend({ schema: DEFAULT_SAFE_SCHEMA }, options),
+              common.extend({ schema: DEFAULT_SAFE_SCHEMA }, options)
             );
           }
 
@@ -6550,7 +6548,7 @@
             // https://en.wikipedia.org/wiki/UTF-16#Code_points_U.2B010000_to_U.2B10FFFF
             return String.fromCharCode(
               ((c - 0x010000) >> 10) + 0xd800,
-              ((c - 0x010000) & 0x03ff) + 0xdc00,
+              ((c - 0x010000) & 0x03ff) + 0xdc00
             );
           }
 
@@ -6601,8 +6599,8 @@
                 state.input,
                 state.position,
                 state.line,
-                state.position - state.lineStart,
-              ),
+                state.position - state.lineStart
+              )
             );
           }
 
@@ -6627,7 +6625,7 @@
               if (args.length !== 1) {
                 throwError(
                   state,
-                  "YAML directive accepts exactly one argument",
+                  "YAML directive accepts exactly one argument"
                 );
               }
 
@@ -6658,7 +6656,7 @@
               if (args.length !== 2) {
                 throwError(
                   state,
-                  "TAG directive accepts exactly two arguments",
+                  "TAG directive accepts exactly two arguments"
                 );
               }
 
@@ -6668,7 +6666,7 @@
               if (!PATTERN_TAG_HANDLE.test(handle)) {
                 throwError(
                   state,
-                  "ill-formed tag handle (first argument) of the TAG directive",
+                  "ill-formed tag handle (first argument) of the TAG directive"
                 );
               }
 
@@ -6677,14 +6675,14 @@
                   state,
                   'there is a previously declared suffix for "' +
                     handle +
-                    '" tag handle',
+                    '" tag handle'
                 );
               }
 
               if (!PATTERN_TAG_URI.test(prefix)) {
                 throwError(
                   state,
-                  "ill-formed tag prefix (second argument) of the TAG directive",
+                  "ill-formed tag prefix (second argument) of the TAG directive"
                 );
               }
 
@@ -6717,7 +6715,7 @@
               } else if (PATTERN_NON_PRINTABLE.test(_result)) {
                 throwError(
                   state,
-                  "the stream contains non-printable characters",
+                  "the stream contains non-printable characters"
                 );
               }
 
@@ -6731,7 +6729,7 @@
             if (!common.isObject(source)) {
               throwError(
                 state,
-                "cannot merge mappings; the provided source object is unacceptable",
+                "cannot merge mappings; the provided source object is unacceptable"
               );
             }
 
@@ -6757,7 +6755,7 @@
             overridableKeys,
             keyTag,
             keyNode,
-            valueNode,
+            valueNode
           ) {
             var index, quantity;
 
@@ -6778,7 +6776,7 @@
                     state,
                     _result,
                     valueNode[index],
-                    overridableKeys,
+                    overridableKeys
                   );
                 }
               } else {
@@ -7043,7 +7041,7 @@
                 captureSegment(state, captureStart, captureEnd, true);
                 writeFoldedLines(
                   state,
-                  skipSeparationSpace(state, false, nodeIndent),
+                  skipSeparationSpace(state, false, nodeIndent)
                 );
                 captureStart = captureEnd = state.position;
               } else if (
@@ -7052,7 +7050,7 @@
               ) {
                 throwError(
                   state,
-                  "unexpected end of the document within a single quoted scalar",
+                  "unexpected end of the document within a single quoted scalar"
                 );
               } else {
                 state.position++;
@@ -7062,7 +7060,7 @@
 
             throwError(
               state,
-              "unexpected end of the stream within a single quoted scalar",
+              "unexpected end of the stream within a single quoted scalar"
             );
           }
 
@@ -7122,7 +7120,7 @@
                 captureSegment(state, captureStart, captureEnd, true);
                 writeFoldedLines(
                   state,
-                  skipSeparationSpace(state, false, nodeIndent),
+                  skipSeparationSpace(state, false, nodeIndent)
                 );
                 captureStart = captureEnd = state.position;
               } else if (
@@ -7131,7 +7129,7 @@
               ) {
                 throwError(
                   state,
-                  "unexpected end of the document within a double quoted scalar",
+                  "unexpected end of the document within a double quoted scalar"
                 );
               } else {
                 state.position++;
@@ -7141,7 +7139,7 @@
 
             throwError(
               state,
-              "unexpected end of the stream within a double quoted scalar",
+              "unexpected end of the stream within a double quoted scalar"
             );
           }
 
@@ -7197,7 +7195,7 @@
               } else if (!readNext) {
                 throwError(
                   state,
-                  "missed comma between flow collection entries",
+                  "missed comma between flow collection entries"
                 );
               }
 
@@ -7240,7 +7238,7 @@
                   overridableKeys,
                   keyTag,
                   keyNode,
-                  valueNode,
+                  valueNode
                 );
               } else if (isPair) {
                 _result.push(
@@ -7250,8 +7248,8 @@
                     overridableKeys,
                     keyTag,
                     keyNode,
-                    valueNode,
-                  ),
+                    valueNode
+                  )
                 );
               } else {
                 _result.push(keyNode);
@@ -7271,7 +7269,7 @@
 
             throwError(
               state,
-              "unexpected end of the stream within a flow collection",
+              "unexpected end of the stream within a flow collection"
             );
           }
 
@@ -7314,7 +7312,7 @@
                 if (tmp === 0) {
                   throwError(
                     state,
-                    "bad explicit indentation width of a block scalar; it cannot be less than one",
+                    "bad explicit indentation width of a block scalar; it cannot be less than one"
                   );
                 } else if (!detectedIndent) {
                   textIndent = nodeIndent + tmp - 1;
@@ -7322,7 +7320,7 @@
                 } else {
                   throwError(
                     state,
-                    "repeat of an indentation width identifier",
+                    "repeat of an indentation width identifier"
                   );
                 }
               } else {
@@ -7371,7 +7369,7 @@
                 if (chomping === CHOMPING_KEEP) {
                   state.result += common.repeat(
                     "\n",
-                    didReadContent ? 1 + emptyLines : emptyLines,
+                    didReadContent ? 1 + emptyLines : emptyLines
                   );
                 } else if (chomping === CHOMPING_CLIP) {
                   if (didReadContent) {
@@ -7392,7 +7390,7 @@
                   // except for the first content line (cf. Example 8.1)
                   state.result += common.repeat(
                     "\n",
-                    didReadContent ? 1 + emptyLines : emptyLines,
+                    didReadContent ? 1 + emptyLines : emptyLines
                   );
 
                   // End of more-indented block.
@@ -7417,7 +7415,7 @@
                 // Keep all line breaks except the header line break.
                 state.result += common.repeat(
                   "\n",
-                  didReadContent ? 1 + emptyLines : emptyLines,
+                  didReadContent ? 1 + emptyLines : emptyLines
                 );
               }
 
@@ -7541,7 +7539,7 @@
                       overridableKeys,
                       keyTag,
                       keyNode,
-                      null,
+                      null
                     );
                     keyTag = keyNode = valueNode = null;
                   }
@@ -7556,7 +7554,7 @@
                 } else {
                   throwError(
                     state,
-                    "incomplete explicit mapping pair; a key node is missed",
+                    "incomplete explicit mapping pair; a key node is missed"
                   );
                 }
 
@@ -7582,7 +7580,7 @@
                     if (!is_WS_OR_EOL(ch)) {
                       throwError(
                         state,
-                        "a whitespace character is expected after the key-value separator within a block mapping",
+                        "a whitespace character is expected after the key-value separator within a block mapping"
                       );
                     }
 
@@ -7593,7 +7591,7 @@
                         overridableKeys,
                         keyTag,
                         keyNode,
-                        null,
+                        null
                       );
                       keyTag = keyNode = valueNode = null;
                     }
@@ -7606,7 +7604,7 @@
                   } else if (detected) {
                     throwError(
                       state,
-                      "can not read an implicit mapping pair; a colon is missed",
+                      "can not read an implicit mapping pair; a colon is missed"
                     );
                   } else {
                     state.tag = _tag;
@@ -7616,7 +7614,7 @@
                 } else if (detected) {
                   throwError(
                     state,
-                    "can not read a block mapping entry; a multiline key may not be an implicit key",
+                    "can not read a block mapping entry; a multiline key may not be an implicit key"
                   );
                 } else {
                   state.tag = _tag;
@@ -7637,7 +7635,7 @@
                     nodeIndent,
                     CONTEXT_BLOCK_OUT,
                     true,
-                    allowCompact,
+                    allowCompact
                   )
                 ) {
                   if (atExplicitKey) {
@@ -7654,7 +7652,7 @@
                     overridableKeys,
                     keyTag,
                     keyNode,
-                    valueNode,
+                    valueNode
                   );
                   keyTag = keyNode = valueNode = null;
                 }
@@ -7682,7 +7680,7 @@
                 overridableKeys,
                 keyTag,
                 keyNode,
-                null,
+                null
               );
             }
 
@@ -7739,7 +7737,7 @@
               } else {
                 throwError(
                   state,
-                  "unexpected end of the stream within a verbatim tag",
+                  "unexpected end of the stream within a verbatim tag"
                 );
               }
             } else {
@@ -7748,13 +7746,13 @@
                   if (!isNamed) {
                     tagHandle = state.input.slice(
                       _position - 1,
-                      state.position + 1,
+                      state.position + 1
                     );
 
                     if (!PATTERN_TAG_HANDLE.test(tagHandle)) {
                       throwError(
                         state,
-                        "named tag handle cannot contain such characters",
+                        "named tag handle cannot contain such characters"
                       );
                     }
 
@@ -7763,7 +7761,7 @@
                   } else {
                     throwError(
                       state,
-                      "tag suffix cannot contain exclamation marks",
+                      "tag suffix cannot contain exclamation marks"
                     );
                   }
                 }
@@ -7776,7 +7774,7 @@
               if (PATTERN_FLOW_INDICATORS.test(tagName)) {
                 throwError(
                   state,
-                  "tag suffix cannot contain flow indicator characters",
+                  "tag suffix cannot contain flow indicator characters"
                 );
               }
             }
@@ -7784,7 +7782,7 @@
             if (tagName && !PATTERN_TAG_URI.test(tagName)) {
               throwError(
                 state,
-                "tag name cannot contain such characters: " + tagName,
+                "tag name cannot contain such characters: " + tagName
               );
             }
 
@@ -7824,7 +7822,7 @@
             if (state.position === _position) {
               throwError(
                 state,
-                "name of an anchor node must contain at least one character",
+                "name of an anchor node must contain at least one character"
               );
             }
 
@@ -7849,7 +7847,7 @@
             if (state.position === _position) {
               throwError(
                 state,
-                "name of an alias node must contain at least one character",
+                "name of an alias node must contain at least one character"
               );
             }
 
@@ -7869,7 +7867,7 @@
             parentIndent,
             nodeContext,
             allowToSeek,
-            allowCompact,
+            allowCompact
           ) {
             var allowBlockStyles,
               allowBlockScalars,
@@ -7968,14 +7966,14 @@
                     if (state.tag !== null || state.anchor !== null) {
                       throwError(
                         state,
-                        "alias node should not have any properties",
+                        "alias node should not have any properties"
                       );
                     }
                   } else if (
                     readPlainScalar(
                       state,
                       flowIndent,
-                      CONTEXT_FLOW_IN === nodeContext,
+                      CONTEXT_FLOW_IN === nodeContext
                     )
                   ) {
                     hasContent = true;
@@ -8024,7 +8022,7 @@
               } else if (
                 _hasOwnProperty.call(
                   state.typeMap[state.kind || "fallback"],
-                  state.tag,
+                  state.tag
                 )
               ) {
                 type = state.typeMap[state.kind || "fallback"][state.tag];
@@ -8038,7 +8036,7 @@
                       type.kind +
                       '", not "' +
                       state.kind +
-                      '"',
+                      '"'
                   );
                 }
 
@@ -8048,7 +8046,7 @@
                     state,
                     "cannot resolve a node with !<" +
                       state.tag +
-                      "> explicit tag",
+                      "> explicit tag"
                   );
                 } else {
                   state.result = type.construct(state.result);
@@ -8103,7 +8101,7 @@
               if (directiveName.length < 1) {
                 throwError(
                   state,
-                  "directive name must not be less than one character in length",
+                  "directive name must not be less than one character in length"
                 );
               }
 
@@ -8128,7 +8126,7 @@
                 }
 
                 directiveArgs.push(
-                  state.input.slice(_position, state.position),
+                  state.input.slice(_position, state.position)
                 );
               }
 
@@ -8138,12 +8136,12 @@
                 directiveHandlers[directiveName](
                   state,
                   directiveName,
-                  directiveArgs,
+                  directiveArgs
                 );
               } else {
                 throwWarning(
                   state,
-                  'unknown document directive "' + directiveName + '"',
+                  'unknown document directive "' + directiveName + '"'
                 );
               }
             }
@@ -8167,19 +8165,19 @@
               state.lineIndent - 1,
               CONTEXT_BLOCK_OUT,
               false,
-              true,
+              true
             );
             skipSeparationSpace(state, true, -1);
 
             if (
               state.checkLineBreaks &&
               PATTERN_NON_ASCII_LINE_BREAKS.test(
-                state.input.slice(documentStart, state.position),
+                state.input.slice(documentStart, state.position)
               )
             ) {
               throwWarning(
                 state,
-                "non-ASCII line breaks are interpreted as content",
+                "non-ASCII line breaks are interpreted as content"
               );
             }
 
@@ -8199,7 +8197,7 @@
             if (state.position < state.length - 1) {
               throwError(
                 state,
-                "end of the stream or a document separator is expected",
+                "end of the stream or a document separator is expected"
               );
             } else {
               return;
@@ -8268,7 +8266,7 @@
               return documents[0];
             }
             throw new YAMLException(
-              "expected a single document in the stream, but found more",
+              "expected a single document in the stream, but found more"
             );
           }
 
@@ -8276,14 +8274,14 @@
             loadAll(
               input,
               output,
-              common.extend({ schema: DEFAULT_SAFE_SCHEMA }, options),
+              common.extend({ schema: DEFAULT_SAFE_SCHEMA }, options)
             );
           }
 
           function safeLoad(input, options) {
             return load(
               input,
-              common.extend({ schema: DEFAULT_SAFE_SCHEMA }, options),
+              common.extend({ schema: DEFAULT_SAFE_SCHEMA }, options)
             );
           }
 
@@ -8328,7 +8326,7 @@
             while (
               start > 0 &&
               "\x00\r\n\x85\u2028\u2029".indexOf(
-                this.buffer.charAt(start - 1),
+                this.buffer.charAt(start - 1)
               ) === -1
             ) {
               start -= 1;
@@ -8460,7 +8458,7 @@
             this.implicit.forEach(function (type) {
               if (type.loadKind && type.loadKind !== "scalar") {
                 throw new YAMLException(
-                  "There is a non-scalar type in the implicit list of a schema. Implicit resolving of such types is not supported.",
+                  "There is a non-scalar type in the implicit list of a schema. Implicit resolving of such types is not supported."
                 );
               }
             });
@@ -8469,7 +8467,7 @@
             this.compiledExplicit = compileList(this, "explicit", []);
             this.compiledTypeMap = compileMap(
               this.compiledImplicit,
-              this.compiledExplicit,
+              this.compiledExplicit
             );
           }
 
@@ -8491,7 +8489,7 @@
 
               default:
                 throw new YAMLException(
-                  "Wrong number of arguments for Schema.create function",
+                  "Wrong number of arguments for Schema.create function"
                 );
             }
 
@@ -8504,7 +8502,7 @@
               })
             ) {
               throw new YAMLException(
-                "Specified list of super schemas (or a single Schema object) contains a non-Schema object.",
+                "Specified list of super schemas (or a single Schema object) contains a non-Schema object."
               );
             }
 
@@ -8514,7 +8512,7 @@
               })
             ) {
               throw new YAMLException(
-                "Specified list of YAML types (or a single Type object) contains a non-Type object.",
+                "Specified list of YAML types (or a single Type object) contains a non-Type object."
               );
             }
 
@@ -8710,7 +8708,7 @@
                     name +
                     '" is met in definition of "' +
                     tag +
-                    '" YAML type.',
+                    '" YAML type.'
                 );
               }
             });
@@ -8733,7 +8731,7 @@
             this.represent = options["represent"] || null;
             this.defaultStyle = options["defaultStyle"] || null;
             this.styleAliases = compileStyleAliases(
-              options["styleAliases"] || null,
+              options["styleAliases"] || null
             );
 
             if (YAML_NODE_KINDS.indexOf(this.kind) === -1) {
@@ -8742,7 +8740,7 @@
                   this.kind +
                   '" is specified for "' +
                   tag +
-                  '" YAML type.',
+                  '" YAML type.'
               );
             }
           }
@@ -8960,7 +8958,7 @@
               "|\\.[0-9_]+(?:[eE][-+][0-9]+)?" +
               "|[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\\.[0-9_]*" +
               "|[-+]?\\.(?:inf|Inf|INF)" +
-              "|\\.(?:nan|NaN|NAN))$",
+              "|\\.(?:nan|NaN|NAN))$"
           );
 
           function resolveYamlFloat(data) {
@@ -9079,9 +9077,9 @@
 
           function isHexCode(c) {
             return (
-              (0x30 /* 0 */ <= c && c <= 0x39 /* 9 */) ||
-              (0x41 /* A */ <= c && c <= 0x46 /* F */) ||
-              (0x61 /* a */ <= c && c <= 0x66 /* f */)
+              (0x30 /* 0 */ <= c && c <= 0x39) /* 9 */ ||
+              (0x41 /* A */ <= c && c <= 0x46) /* F */ ||
+              (0x61 /* a */ <= c && c <= 0x66) /* f */
             );
           }
 
@@ -9740,7 +9738,7 @@
           var YAML_DATE_REGEXP = new RegExp(
             "^([0-9][0-9][0-9][0-9])" + // [1] year
               "-([0-9][0-9])" + // [2] month
-              "-([0-9][0-9])$",
+              "-([0-9][0-9])$"
           ); // [3] day
 
           var YAML_TIMESTAMP_REGEXP = new RegExp(
@@ -9753,7 +9751,7 @@
               ":([0-9][0-9])" + // [6] second
               "(?:\\.([0-9]*))?" + // [7] fraction
               "(?:[ \\t]*(Z|([-+])([0-9][0-9]?)" + // [8] tz [9] tz_sign [10] tz_hour
-              "(?::([0-9][0-9]))?))?$",
+              "(?::([0-9][0-9]))?))?$"
           ); // [11] tz_minute
 
           function resolveYamlTimestamp(data) {
@@ -9818,7 +9816,7 @@
             }
 
             date = new Date(
-              Date.UTC(year, month, day, hour, minute, second, fraction),
+              Date.UTC(year, month, day, hour, minute, second, fraction)
             );
 
             if (delta) date.setTime(date.getTime() - delta);
@@ -9876,7 +9874,7 @@
                     }
                   }
                 },
-                true,
+                true
               );
 
               return function nextTick(fn) {
@@ -10041,7 +10039,7 @@
                     if ((extra & 0xfc00) == 0xdc00) {
                       // low surrogate
                       output.push(
-                        ((value & 0x3ff) << 10) + (extra & 0x3ff) + 0x10000,
+                        ((value & 0x3ff) << 10) + (extra & 0x3ff) + 0x10000
                       );
                     } else {
                       // unmatched surrogate; only append this code unit, in case the next
@@ -10070,7 +10068,7 @@
                   if (value > 0xffff) {
                     value -= 0x10000;
                     output += stringFromCharCode(
-                      ((value >>> 10) & 0x3ff) | 0xd800,
+                      ((value >>> 10) & 0x3ff) | 0xd800
                     );
                     value = 0xdc00 | (value & 0x3ff);
                   }
@@ -10135,7 +10133,7 @@
                   delta = floor(delta / baseMinusTMin);
                 }
                 return floor(
-                  k + ((baseMinusTMin + 1) * delta) / (delta + skew),
+                  k + ((baseMinusTMin + 1) * delta) / (delta + skew)
                 );
               }
 
@@ -10344,8 +10342,8 @@
                         baseMinusT = base - t;
                         output.push(
                           stringFromCharCode(
-                            digitToBasic(t + (qMinusT % baseMinusT), 0),
-                          ),
+                            digitToBasic(t + (qMinusT % baseMinusT), 0)
+                          )
                         );
                         q = floor(qMinusT / baseMinusT);
                       }
@@ -10354,7 +10352,7 @@
                       bias = adapt(
                         delta,
                         handledCPCountPlusOne,
-                        handledCPCount == basicLength,
+                        handledCPCount == basicLength
                       );
                       delta = 0;
                       ++handledCPCount;
@@ -10461,7 +10459,7 @@
               ? self
               : typeof window !== "undefined"
                 ? window
-                : {},
+                : {}
           );
         },
         {},
@@ -10884,7 +10882,7 @@
                       p,
                       props[p],
                       options,
-                      errors,
+                      errors
                     );
                   }
                 }
@@ -10908,7 +10906,7 @@
                             p,
                             props[p],
                             options,
-                            errors,
+                            errors
                           );
                         }
                       }
@@ -10936,7 +10934,7 @@
                       unvisitedProps[i],
                       object[unvisitedProps[i]],
                       false,
-                      errors,
+                      errors
                     );
                   }
                 }
@@ -10952,7 +10950,7 @@
                       unvisitedProps[i],
                       schema.unvisitedProperties,
                       options,
-                      errors,
+                      errors
                     );
                   }
                 }
@@ -10965,7 +10963,7 @@
               property,
               schema,
               options,
-              errors,
+              errors
             ) {
               var format, valid, spec, type;
 
@@ -11093,7 +11091,7 @@
                     constrain("divisibleBy", value, function (a, e) {
                       var multiplier = Math.max(
                         (a - Math.floor(a)).toString().length - 2,
-                        (e - Math.floor(e)).toString().length - 2,
+                        (e - Math.floor(e)).toString().length - 2
                       );
                       multiplier =
                         multiplier > 0 ? Math.pow(10, multiplier) : 1;
@@ -11109,7 +11107,7 @@
                           property,
                           e,
                           options,
-                          errors,
+                          errors
                         );
                       }
                       return true;
@@ -11240,7 +11238,7 @@
           })(
             typeof module === "object" && module && module.exports
               ? module.exports
-              : window,
+              : window
           );
         },
         {},
@@ -11496,7 +11494,7 @@
                     }
                   }
                 },
-                true,
+                true
               );
 
               return function nextTick(fn) {
@@ -11717,7 +11715,7 @@
               state,
               chunk,
               encoding,
-              addToFront,
+              addToFront
             ) {
               var er = chunkInvalid(state, chunk);
               if (er) {
@@ -12574,7 +12572,7 @@
             if (!cb)
               return stream.emit(
                 "error",
-                new Error("no writecb in Transform class"),
+                new Error("no writecb in Transform class")
               );
 
             ts.writechunk = null;
@@ -12664,7 +12662,7 @@
               this._transform(
                 ts.writechunk,
                 ts.writeencoding,
-                ts.afterTransform,
+                ts.afterTransform
               );
             } else {
               // mark that we need a transform, so that any data that comes in
@@ -13199,7 +13197,7 @@
             for (var key in obj) {
               if (null != obj[key]) {
                 pairs.push(
-                  encodeURIComponent(key) + "=" + encodeURIComponent(obj[key]),
+                  encodeURIComponent(key) + "=" + encodeURIComponent(obj[key])
                 );
               }
             }
@@ -13346,7 +13344,7 @@
                 if (key && val) obj[key] = val;
                 return obj;
               },
-              {},
+              {}
             );
           }
 
@@ -13403,7 +13401,7 @@
             this.text = this.xhr.responseText;
             this.setStatusProperties(this.xhr.status);
             this.header = this.headers = parseHeader(
-              this.xhr.getAllResponseHeaders(),
+              this.xhr.getAllResponseHeaders()
             );
             // getAllResponseHeaders sometimes falsely returns "" for CORS requests, but
             // getResponseHeader still works. so we get content-type even if getting
@@ -13850,7 +13848,7 @@
 
           Request.prototype.crossDomainError = function () {
             var err = new Error(
-              "Origin is not allowed by Access-Control-Allow-Origin",
+              "Origin is not allowed by Access-Control-Allow-Origin"
             );
             err.crossDomain = true;
             this.callback(err);
@@ -14218,11 +14216,11 @@
           Url.prototype.parse = function (
             url,
             parseQueryString,
-            slashesDenoteHost,
+            slashesDenoteHost
           ) {
             if (!isString(url)) {
               throw new TypeError(
-                "Parameter 'url' must be a string, not " + typeof url,
+                "Parameter 'url' must be a string, not " + typeof url
               );
             }
 
@@ -14383,7 +14381,7 @@
                 for (var i = 0; i < domainArray.length; ++i) {
                   var s = domainArray[i];
                   newOut.push(
-                    s.match(/[^A-Za-z0-9_-]/) ? "xn--" + punycode.encode(s) : s,
+                    s.match(/[^A-Za-z0-9_-]/) ? "xn--" + punycode.encode(s) : s
                   );
                 }
                 this.hostname = newOut.join(".");
@@ -14399,7 +14397,7 @@
               if (ipv6Hostname) {
                 this.hostname = this.hostname.substr(
                   1,
-                  this.hostname.length - 2,
+                  this.hostname.length - 2
                 );
                 if (rest[0] !== "/") {
                   rest = "/" + rest;
@@ -15152,13 +15150,13 @@
                 if (isRegExp(value)) {
                   return ctx.stylize(
                     RegExp.prototype.toString.call(value),
-                    "regexp",
+                    "regexp"
                   );
                 }
                 if (isDate(value)) {
                   return ctx.stylize(
                     Date.prototype.toString.call(value),
-                    "date",
+                    "date"
                   );
                 }
                 if (isError(value)) {
@@ -15205,7 +15203,7 @@
                 if (isRegExp(value)) {
                   return ctx.stylize(
                     RegExp.prototype.toString.call(value),
-                    "regexp",
+                    "regexp"
                   );
                 } else {
                   return ctx.stylize("[Object]", "special");
@@ -15221,7 +15219,7 @@
                   value,
                   recurseTimes,
                   visibleKeys,
-                  keys,
+                  keys
                 );
               } else {
                 output = keys.map(function (key) {
@@ -15231,7 +15229,7 @@
                     recurseTimes,
                     visibleKeys,
                     key,
-                    array,
+                    array
                   );
                 });
               }
@@ -15275,8 +15273,8 @@
                       recurseTimes,
                       visibleKeys,
                       String(i),
-                      true,
-                    ),
+                      true
+                    )
                   );
                 } else {
                   output.push("");
@@ -15291,8 +15289,8 @@
                       recurseTimes,
                       visibleKeys,
                       key,
-                      true,
-                    ),
+                      true
+                    )
                   );
                 }
               });
@@ -15305,7 +15303,7 @@
               recurseTimes,
               visibleKeys,
               key,
-              array,
+              array
             ) {
               var name, str, desc;
               desc = Object.getOwnPropertyDescriptor(value, key) || {
@@ -15523,7 +15521,7 @@
               console.log(
                 "%s - %s",
                 timestamp(),
-                exports.format.apply(exports, arguments),
+                exports.format.apply(exports, arguments)
               );
             };
 
@@ -15564,7 +15562,7 @@
               ? self
               : typeof window !== "undefined"
                 ? window
-                : {},
+                : {}
           );
         },
         { "./support/isBuffer": 71, "g5I+bs": 54, inherits: 70 },
@@ -15574,7 +15572,7 @@
           var t = new (_dereq_("hogan.js/lib/template").Template)(function (
             c,
             p,
-            i,
+            i
           ) {
             var _ = this;
             _.b((i = i || ""));
@@ -15582,7 +15580,7 @@
             _.b("\n" + i);
             _.b("\n" + i);
             _.b(
-              '  <a class="logo" href="https://www.heroku.com/deploy?template=',
+              '  <a class="logo" href="https://www.heroku.com/deploy?template='
             );
             _.b(_.v(_.f("repository", c, p, 0)));
             _.b('">');
@@ -15674,7 +15672,7 @@
             _.b("\n" + i);
             _.b("\n" + i);
             _.b(
-              '      <form class="deploy" method="GET" action="https://www.heroku.com/deploy">',
+              '      <form class="deploy" method="GET" action="https://www.heroku.com/deploy">'
             );
             _.b("\n" + i);
             _.b('        <input type="hidden" name="template" value="');
@@ -15720,7 +15718,7 @@
           var t = new (_dereq_("hogan.js/lib/template").Template)(function (
             c,
             p,
-            i,
+            i
           ) {
             var _ = this;
             _.b((i = i || ""));
@@ -15774,16 +15772,16 @@
           var t = new (_dereq_("hogan.js/lib/template").Template)(function (
             c,
             p,
-            i,
+            i
           ) {
             var _ = this;
             _.b((i = i || ""));
             _.b(
-              "`app.json` is a manifest format for describing web apps. It declares environment",
+              "`app.json` is a manifest format for describing web apps. It declares environment"
             );
             _.b("\n" + i);
             _.b(
-              "variables, addons, and other information required to run an app on Heroku. This",
+              "variables, addons, and other information required to run an app on Heroku. This"
             );
             _.b("\n" + i);
             _.b("document describes the schema in detail.");
@@ -15847,6 +15845,6 @@
       ],
     },
     {},
-    [1],
+    [1]
   )(1);
 });
