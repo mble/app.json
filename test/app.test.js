@@ -170,7 +170,7 @@ describe('App', function () {
     it('returns a pretty JSON string', function () {
       app = App.new(payload)
       assert(app.valid)
-      const output = app.toJSON
+      const output = app.toJSON()
       const app2 = App.new(output)
       assert.equal(typeof output, 'string')
       assert(app2.valid)
@@ -186,7 +186,7 @@ describe('App', function () {
       assert(app.funky)
       assert(app.junk)
 
-      const output = app.toJSON
+      const output = app.toJSON()
       const app2 = App.new(output)
       assert.equal(typeof output, 'string')
       assert(app2.valid)

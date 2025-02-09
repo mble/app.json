@@ -1,16 +1,15 @@
 'use strict'
 
-var fs = require('fs')
-var hogan = require('hogan.js')
-var addons = require('./lib/addons')
+const fs = require('fs')
+const hogan = require('hogan.js')
+const addons = require('./lib/addons')
 
-var App = (module.exports = require('./lib/app'))
+const App = (module.exports = require('./lib/app'))
 
 App.prototype.getAddonPrices = function (cb) {
-  var _this = this
-  App.addons.getPrices(this.addons, function (err, prices) {
+  App.addons.getPrices(this.addons, (err, prices) => {
     if (err) return cb(err)
-    _this.prices = prices
+    this.prices = prices
     cb(null, prices)
   })
 }
@@ -19,13 +18,13 @@ App.prototype.getAddonPrices = function (cb) {
 App.templates = {}
 if (module.parent) {
   App.templates.app = hogan.compile(
-    fs.readFileSync(__dirname + '/templates/app.mustache.html').toString(),
+    fs.readFileSync(`${__dirname}/templates/app.mustache.html`, 'utf8'),
   )
   App.templates.build = hogan.compile(
-    fs.readFileSync(__dirname + '/templates/build.mustache.html').toString(),
+    fs.readFileSync(`${__dirname}/templates/build.mustache.html`, 'utf8'),
   )
   App.templates.schema = hogan.compile(
-    fs.readFileSync(__dirname + '/templates/schema.mustache.md').toString(),
+    fs.readFileSync(`${__dirname}/templates/schema.mustache.md`, 'utf8'),
   )
 } else {
   App.templates.app = require('./templates/app.mustache.html')
