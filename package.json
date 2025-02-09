@@ -4,7 +4,8 @@
   "description": "Create, validate, and render Heroku app.json manifests",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --file test/setup.js",
+    "test": "nyc --reporter=lcov --reporter=text mocha --recursive test",
+    "test:coverage": "open coverage/lcov-report/index.html",
     "build": "npm run bundle; npm run minify; npm run bundle-lite; npm run minify-lite; npm run doc; ls -alh dist | grep app.json",
     "bundle": "browserify index.js --transform browserify-hogan --standalone App > dist/app.json.js",
     "bundle-lite": "browserify lib/app.js --transform browserify-hogan --standalone App > dist/app.json.lite.js",
@@ -52,6 +53,7 @@
     "cheerio": "^1.0.0",
     "mocha": "^11.1.0",
     "nock": "^14.0.1",
+    "nyc": "^17.1.0",
     "prettier": "^3.5.0",
     "uglify-js": "^3.19.3"
   }

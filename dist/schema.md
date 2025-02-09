@@ -8,11 +8,7 @@ document describes the schema in detail.
 {
   "name": "Small Sharp Tool",
   "description": "This app does one little thing, and does it well.",
-  "keywords": [
-    "productivity",
-    "HTML5",
-    "scalpel"
-  ],
+  "keywords": ["productivity", "HTML5", "scalpel"],
   "website": "https://small-sharp-tool.com/",
   "repository": "https://github.com/jane-doe/small-sharp-tool",
   "logo": "https://small-sharp-tool.com/logo.svg",
@@ -31,10 +27,7 @@ document describes the schema in detail.
       "value": "5"
     }
   },
-  "addons": [
-    "openredis",
-    "mongolab:shared-single-small"
-  ],
+  "addons": ["openredis", "mongolab:shared-single-small"],
   "formation": [
     {
       "process": "web",
@@ -60,7 +53,6 @@ document describes the schema in detail.
 
 ## Schema Reference
 
-
 ### name
 
 _(string, optional)_ A clean and simple name to identify the template (30 characters max).
@@ -70,7 +62,6 @@ _(string, optional)_ A clean and simple name to identify the template (30 charac
   "name": "Small Sharp Tool"
 }
 ```
-
 
 ### description
 
@@ -82,21 +73,15 @@ _(string, optional)_ A brief summary of the app: what it does, who it&#39;s for,
 }
 ```
 
-
 ### keywords
 
 _(array, optional)_ An array of strings describing the app.
 
 ```json
 {
-  "keywords": [
-    "productivity",
-    "HTML5",
-    "scalpel"
-  ]
+  "keywords": ["productivity", "HTML5", "scalpel"]
 }
 ```
-
 
 ### website
 
@@ -108,7 +93,6 @@ _(string, optional)_ The project&#39;s website.
 }
 ```
 
-
 ### repository
 
 _(string, optional)_ The location of the application&#39;s source code, such as a Git URL, GitHub URL, Subversion URL, or Mercurial URL.
@@ -118,7 +102,6 @@ _(string, optional)_ The location of the application&#39;s source code, such as 
   "repository": "https://github.com/jane-doe/small-sharp-tool"
 }
 ```
-
 
 ### logo
 
@@ -130,7 +113,6 @@ _(string, optional)_ The URL of the application&#39;s logo image. Dimensions sho
 }
 ```
 
-
 ### success_url
 
 _(string, optional)_ A URL specifying where to redirect the user once their new app is deployed. If value is a fully-qualified URL, the user should be redirected to that URL. If value begins with a slash `/`, the user should be redirected to that path in their newly deployed app.
@@ -140,7 +122,6 @@ _(string, optional)_ A URL specifying where to redirect the user once their new 
   "success_url": "/welcome"
 }
 ```
-
 
 ### scripts
 
@@ -153,7 +134,6 @@ _(object, optional)_ A key-value object specifying scripts or shell commands to 
   }
 }
 ```
-
 
 ### env
 
@@ -180,20 +160,15 @@ _(object, optional)_ A key-value object for environment variables, or [config va
 }
 ```
 
-
 ### addons
 
 _(array, optional)_ An array of strings specifying Heroku addons to provision on the app before deploying. Each addon should be in the format `addon:plan` or `addon`. If plan is omitted, that addon&#39;s default plan will be provisioned.
 
 ```json
 {
-  "addons": [
-    "openredis",
-    "mongolab:shared-single-small"
-  ]
+  "addons": ["openredis", "mongolab:shared-single-small"]
 }
 ```
-
 
 ### formation
 
@@ -216,7 +191,6 @@ _(array, optional)_ An array of objects specifying dynos to scale on the app bef
 }
 ```
 
-
 ### buildpacks
 
 _(array, optional)_ An ordered array of objects specifying the buildpacks to be applied to this app
@@ -233,4 +207,3 @@ _(array, optional)_ An ordered array of objects specifying the buildpacks to be 
   ]
 }
 ```
-
