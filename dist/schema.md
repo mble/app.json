@@ -8,11 +8,7 @@ document describes the schema in detail.
 {
   "name": "Small Sharp Tool",
   "description": "This app does one little thing, and does it well.",
-  "keywords": [
-    "productivity",
-    "HTML5",
-    "scalpel"
-  ],
+  "keywords": ["productivity", "HTML5", "scalpel"],
   "website": "https://small-sharp-tool.com/",
   "repository": "https://github.com/jane-doe/small-sharp-tool",
   "logo": "https://small-sharp-tool.com/logo.svg",
@@ -31,10 +27,7 @@ document describes the schema in detail.
       "value": "5"
     }
   },
-  "addons": [
-    "openredis",
-    "mongolab:shared-single-small"
-  ],
+  "addons": ["openredis", "mongolab:shared-single-small"],
   "formation": [
     {
       "process": "web",
@@ -60,10 +53,9 @@ document describes the schema in detail.
 
 ## Schema Reference
 
-
 ### name
 
-*(string, optional)* A clean and simple name to identify the template (30 characters max).
+_(string, optional)_ A clean and simple name to identify the template (30 characters max).
 
 ```json
 {
@@ -71,10 +63,9 @@ document describes the schema in detail.
 }
 ```
 
-
 ### description
 
-*(string, optional)* A brief summary of the app: what it does, who it&#39;s for, why it exists, etc.
+_(string, optional)_ A brief summary of the app: what it does, who it&#39;s for, why it exists, etc.
 
 ```json
 {
@@ -82,25 +73,19 @@ document describes the schema in detail.
 }
 ```
 
-
 ### keywords
 
-*(array, optional)* An array of strings describing the app.
+_(array, optional)_ An array of strings describing the app.
 
 ```json
 {
-  "keywords": [
-    "productivity",
-    "HTML5",
-    "scalpel"
-  ]
+  "keywords": ["productivity", "HTML5", "scalpel"]
 }
 ```
 
-
 ### website
 
-*(string, optional)* The project&#39;s website.
+_(string, optional)_ The project&#39;s website.
 
 ```json
 {
@@ -108,10 +93,9 @@ document describes the schema in detail.
 }
 ```
 
-
 ### repository
 
-*(string, optional)* The location of the application&#39;s source code, such as a Git URL, GitHub URL, Subversion URL, or Mercurial URL.
+_(string, optional)_ The location of the application&#39;s source code, such as a Git URL, GitHub URL, Subversion URL, or Mercurial URL.
 
 ```json
 {
@@ -119,10 +103,9 @@ document describes the schema in detail.
 }
 ```
 
-
 ### logo
 
-*(string, optional)* The URL of the application&#39;s logo image. Dimensions should be square. Format can be SVG, PNG, or JPG.
+_(string, optional)_ The URL of the application&#39;s logo image. Dimensions should be square. Format can be SVG, PNG, or JPG.
 
 ```json
 {
@@ -130,10 +113,9 @@ document describes the schema in detail.
 }
 ```
 
-
 ### success_url
 
-*(string, optional)* A URL specifying where to redirect the user once their new app is deployed. If value is a fully-qualified URL, the user should be redirected to that URL. If value begins with a slash `/`, the user should be redirected to that path in their newly deployed app.
+_(string, optional)_ A URL specifying where to redirect the user once their new app is deployed. If value is a fully-qualified URL, the user should be redirected to that URL. If value begins with a slash `/`, the user should be redirected to that path in their newly deployed app.
 
 ```json
 {
@@ -141,10 +123,9 @@ document describes the schema in detail.
 }
 ```
 
-
 ### scripts
 
-*(object, optional)* A key-value object specifying scripts or shell commands to execute at different stages in the build/release process. Currently, `postdeploy` is the only supported script.
+_(object, optional)_ A key-value object specifying scripts or shell commands to execute at different stages in the build/release process. Currently, `postdeploy` is the only supported script.
 
 ```json
 {
@@ -154,10 +135,9 @@ document describes the schema in detail.
 }
 ```
 
-
 ### env
 
-*(object, optional)* A key-value object for environment variables, or [config vars](https://devcenter.heroku.com/articles/config-vars) in Heroku parlance. Keys are the names of the environment variables. Values can be strings or objects. If the value is a string, it will be used. If the value is an object, it defines specific requirements for that variable:
+_(object, optional)_ A key-value object for environment variables, or [config vars](https://devcenter.heroku.com/articles/config-vars) in Heroku parlance. Keys are the names of the environment variables. Values can be strings or objects. If the value is a string, it will be used. If the value is an object, it defines specific requirements for that variable:
 
 - `description`: a human-friendly blurb about what the value is for and how to determine what it should be
 - `value`: a default value to use. This should always be a string.
@@ -180,24 +160,19 @@ document describes the schema in detail.
 }
 ```
 
-
 ### addons
 
-*(array, optional)* An array of strings specifying Heroku addons to provision on the app before deploying. Each addon should be in the format `addon:plan` or `addon`. If plan is omitted, that addon&#39;s default plan will be provisioned.
+_(array, optional)_ An array of strings specifying Heroku addons to provision on the app before deploying. Each addon should be in the format `addon:plan` or `addon`. If plan is omitted, that addon&#39;s default plan will be provisioned.
 
 ```json
 {
-  "addons": [
-    "openredis",
-    "mongolab:shared-single-small"
-  ]
+  "addons": ["openredis", "mongolab:shared-single-small"]
 }
 ```
 
-
 ### formation
 
-*(array, optional)* An array of objects specifying dynos to scale on the app before deploying.
+_(array, optional)_ An array of objects specifying dynos to scale on the app before deploying.
 
 ```json
 {
@@ -216,10 +191,9 @@ document describes the schema in detail.
 }
 ```
 
-
 ### buildpacks
 
-*(array, optional)* An ordered array of objects specifying the buildpacks to be applied to this app
+_(array, optional)_ An ordered array of objects specifying the buildpacks to be applied to this app
 
 ```json
 {
@@ -233,4 +207,3 @@ document describes the schema in detail.
   ]
 }
 ```
-

@@ -101,7 +101,7 @@ npm install app.json --save
 Require it in your script:
 
 ```js
-var App = require("app.json")
+var App = require("app.json");
 ```
 
 ### Usage in the Browser (without Browserify)
@@ -131,14 +131,15 @@ Schema Documentation](https://devcenter.heroku.com/articles/app-json-schema) on 
 Instantiate with a JSON filename:
 
 ```js
-var app = App.new(__dirname + "/path/to/app.json")
+var app = App.new(__dirname + "/path/to/app.json");
 ```
 
 Instantiate with a JSON string:
 
 ```js
-var json = "{name: \"small-sharp-tool\", description: \"This app does one little thing, and does it well.\"}"
-var app = App.new(json)
+var json =
+  '{name: "small-sharp-tool", description: "This app does one little thing, and does it well."}';
+var app = App.new(json);
 ```
 
 Instantiate with a JavaScript object:
@@ -146,8 +147,8 @@ Instantiate with a JavaScript object:
 ```js
 var app = App.new({
   name: "small-sharp-tool",
-  description: "This app does one little thing, and does it well."
-})
+  description: "This app does one little thing, and does it well.",
+});
 ```
 
 ### App.fetch(url, callback)
@@ -159,9 +160,9 @@ to make the `app.json` file downloadable from browsers.
 `url` can be a fully qualified repository URL or a shorthand string in the form `github:user/repo` or `bitbucket:user/repo`
 
 ```js
-App.fetch("github:zeke/slideshow", function(err, manifest) {
-  console.log(err, manifest)
-})
+App.fetch("github:zeke/slideshow", function (err, manifest) {
+  console.log(err, manifest);
+});
 ```
 
 ### App.example
@@ -169,7 +170,7 @@ App.fetch("github:zeke/slideshow", function(err, manifest) {
 Generates an example manifest from `example` properties in the [schema](/schema.js).
 
 ```js
-App.example
+App.example;
 ```
 
 ## Instance Methods
@@ -184,9 +185,9 @@ Returns an array of error objects:
 
 ```js
 [
-  {property: "name", message: "is required"},
-  {property: "website", message: "is not a valid url"}
-]
+  { property: "name", message: "is required" },
+  { property: "website", message: "is not a valid url" },
+];
 ```
 
 If the manifest is valid, an empty array is returned.

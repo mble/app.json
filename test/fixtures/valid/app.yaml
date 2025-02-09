@@ -2,9 +2,9 @@
 name: zapp
 description: A scrappy app for doing stuff with stuff.
 keywords:
-- appage
-- scrappage
-- zappage
+  - appage
+  - scrappage
+  - zappage
 website: https://zapp.github.io
 repository: https://github.com/jane-user/zapp.git
 scripts:
@@ -18,5 +18,5 @@ env:
     description: How many processes to run
     default: 5
 addons:
-- openredis
-- mongolab:shared-single-small
+  - openredis
+  - mongolab:shared-single-small
