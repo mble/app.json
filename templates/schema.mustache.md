@@ -14,7 +14,7 @@ document describes the schema in detail.
 
 ### {{name}}
 
-*({{type}}, {{requiredOrOptional}})* {{description}}
+_({{type}}, {{requiredOrOptional}})_ {{description}}
 
 ```json
 {{{exampleJSON}}}

@@ -1,0 +1,352 @@
+"use strict";
+const nock = require("nock");
+const mocha = require("mocha");
+
+mocha.before(() => {
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/heroku-postgresql/plans/essential-0")
+    .reply(
+      200,
+      [
+        "1f8b080084f33b6600036c91cd6ec32010845f25e21c246ce31fb857eab1879c5a5516814d8382c1059c1ea2bc7b97c4ad14b537166677bf192e441913fc98209ead06222fc41a2249a7bb9e8bc6d0e1a06bcab5e154545d45f9a1025d557a0f9d205be2d5843de41962382d9b9790f2478444ae5ba2c3343bab7c99f9f68e750495c18c2aa3be667543d940eb7a5775b261b265af38cdc0412d0e05392e50caa4a39db30dfeef8ecd534ae0b3556ec3b0f5b84cca8f2bcee3d3cd4fcb06e807ded046f54039c7fd42f38e420fc2402fc450f3a2f5292be7d4dec188676b609ca33d23f9e8217f857822f2a05c82476958f2ffdabb9115eb787340e7d5c1a793f0034a0b2876df7f40e36522180adb92c5db92d8147c3e9212abcf51e9bc6260d069561ac6dfe8563a64cb65e787c2a665360fd973ca5a8c7f5757920bd97625fbb34d16addc91afdf000000ffff030045bb14c517020000",
+      ],
+      {
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "344",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:55 GMT",
+        etag: '"bdb95d74e04b059021d92faaac8b5f18"',
+        "last-modified": "Wed, 08 May 2024 21:49:56 GMT",
+        "request-id":
+          "44f9a48e-61e5-4a86-ad38-4352f0ebd930,3a210e32-5a70-e734-8cf7-9571afd0b9ef,47a4ed55-d36e-9a13-6f31-ec3fcfca0c83",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 7a75fb682b615437ad3681fe1db7cc60.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "J5bMSc3BSZebn0lO_yc8OJGdsaB8Itp4COtLocZUmgDKVPYsJMX7Cw==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.014137181",
+      },
+    );
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/heroku-postgresql/plans")
+    .reply(
+      200,
+      [
+        "1f8b080019f43b660003e49d4d6f1c371286ff4aa0730a6091c5afb92fb0871c0244076383c0e0672c4496bc929c0d10e4bf6f71ba35d3e3e1184a2bad6ec08061cbcd1989ec7ee66555bd24f5f39f5721e7fbbbf78fe5e1f79b54ae767f5edde4abdd9549c69257195c4d122865028f06812a9684986231feeafbabbbf091df73f5eff270ffdbe7ef7ebc7f7cfaf5a13c5efdf5fd55bafff8e9f626dcb5eff9f32ffcff87129e4a7e1f9ef8f5524805c28194d768764aecb4f80f7fb75c6af87ccb2f787af85cda7f1fd3c3cda7a79bfbbbf39ff1ddbf1e1fcbddd34db8fd4ef05b3f7cfe18eede8fdd396dda8f470b57ac23052ad80244fcf37d2203c5169f8bf5de496aafbd7b7c0ab7b721de96f7fcf54d2eef3f3ddcfcce3d7f7f579efe77fff0dbd5ae86dbc772fad2fbcf4ffdd70e0319bbf5613f02f8348ee0bfb7bbf2dc51681de5770f4f20f1c5c72bbe29e2fbabcf7737ed8e7dbcbf7bfa70d56eebddd343484f6337f8463f7e0aa9bc3fdcbab177dcb7a7f6337f0dfca6cf9ff2c9bd27109a6fffb5c41df99d36eddeff7ef378c34319bafcd7f79be042ee943de1621cdc4bc1c0cb60e0331849471d6475e02532189e2ab89c2d64ad75b03a1457f49a6060070cff066068dc49da2818247652bf060c79190cf90c4636267aa5db58b40672c58193518211d6d562a37621ac0986ec8021c55b9021c7bbbf1132901a19dc3741ad6f487f9f8c1f1fcac79bcf1fcf679269c37e3022056fb42ca065743c8418c15bef0015466b2807a756a0e2d3d0cdee2cd29858060a34207842c56ba9da1c2e70435034b9f020fdb56422b87b723e1478910a3c60e185d13a150f1c6310503619622e013209933319cb1ab21e16d8e582c46264f0dd470429aed1efd0eeb4dd10195fc8c510fdcc23e36c1a99360c83a959579f15146d3d90e5d833b8224049fe58865af85fb31e17bd2944e96f512e90894040dba050b41333a28be767af2e41a19ea1a068aacc052123f2601c2a08896758f449962c54c5baa258a80e14763928a6375eef84d8121453a5e0eef9f950d02528e890873015a86a05cf91050f212127a83e804e4e8b9442495ead070575a0c06f33b2602a507070712d3843759c8bcca7425fa2423f5321099535a2459a2dae08a4c0075b41c58881a7144f18d7a342f7c20abd1c1553ad10acd3dba2e2a8159ca1cea85b3c3f7c73890a73882abccfa9f0bd888c0150511c55d8ca5f692755411faacdeb51612e4515dfa4561ca97063dfe651612f51619fa9a88a9c0c19a1589d804491e0ab10108c2f3506cdc2e1d7a3c276a830cb65205f5221b74485de6747782de44e9a9d7c0515ee1215ee90991a21b11482c0e12567208967106704c8ec6bac1455f66e3d2a5c870af736330883416e4354480e2a24086a150bc554a8f954f84b54f803154525a3bd06a95361ada8111c53c2235232955c9dca653d2a7c2fdac405cb15d8b0e00f245ad6e89ddc9258b44216479c6e5fc87a5db8f9c3e5d0e287637041d926912b414ad170c8a91d04970c78294dcaaea22e753d346ebbe1052d97a0b6fb6ff6be83e30c70875b4a500736e45e32985be15ec3c645d1f8e1281bd525f232794e42f8034359b5ca855360a2963e975c4a5c51366efbc2b1604632c2817b38f88fda1c1c837030b8e21515f0775f518e7713e9485904537892f591a732b22e43204f50953349e6aa22ad186bfcd1d78e0583d0133c9e93c24de1316a87dae12b8a5befbe221eef26eaa145cc353882525842088d879892051b1426a75d526b86a27f5c908f656d92231ffc11f51be2a32550ba2550483bc21dceaa88ef9f44cf553d360c8389564529322815384991816718c199732666067508c1bcb4f8393ced1781310ee22b64ecdfd07555d53c2886de7d3545b12d71956a5c00a33795a24c4d5533ae0f99c744cf549db40c2b306295c66200adc8f274922d5311035411990eab6cf4723d2afaa6aa7b2353d56d582de497cbf9fe16191d53f5d830cc23c1185d2d93a8893314c2042157039cb8f0a48251bbfc525375012e7aa6aa59b4ced58a1a2d75e54fa5de544dfc506d69c6decc3518c3b3ef98aac786fd60620849459e42b2e28484bcafe0ac696a95393b21d2155f5a135f008a9ea9ba6041637ae751ecf4a66ae266df3775cd192b4f22f36ae2c3c3efb8aac786fd608a5612c91b5056615bc9972172daca5fd56ab2545e92588f8aaeabbaac53b2772378f66849e1964a19532aa41efb368f8a8eab7a6c18ca18d1e42034e7a9680550e41023a24ca0a2918aaaf642daf5a8e8baaaee6d5c55dc985332a5c2ce2c700d0fbf53c03836ec076391c3cae205d49038ac88b682b71c8b8b2451e712947bb1d7be00155d5775d9b862b3aeea840a26165f1157745cd563c3500ed75a8a94f963a938b86071c8e083e74c04b3b5e8937262c560b3e7aada6fd4551d1267df12e7a615b3fcb3e1e1775cd563c3408534819c51102aa3413a5988590970064d8e8e92482bc6153d57758836dfc056f5db128ba9ad4a9affccc7a253e43c36ec07130ca79efcbd2105c5416641053149df566470a461bc0e6b869bddf2a67a335b755b6efba1fcdd3ac682311f8bae39326dda0f4855d6851424689201489966a2d50cca252dc968e7ec4b37202e8046df1ad133ab9c7fdf1ad9d486a2136b448fd9f35c362e8ac6c418215d85d13581e30173e4e925cf26862049c309aa13ae9a97aedc5a848dae70e837f345d4a6e6938970683b2e589f0747df563d691bd2558d685d4c106c1b48291e9c771ab40d2cdf92279cb4626272c9565d2e633dc1c38e4b623687076bc7eba2d0bead7ad2366c492c5ee6a82c6025cdea212244d70a5d18a3d4da930f2b563e2fd9aa0b66295fc887de5496e2f6ab32384bd1cd28a119b9eb4f1f6eca6d3e775527d787d5189c9e72d0a9a0e4b61eb8449e55441060855346a24925ac30ab3cee7bd9f75417dd65a4f72e8969771db736a11c4c55372b41199ffcb9a73a6d180643a48b091594891c85525b17ac9a7fa6ac373c8d48615fbab8ef9f67a2eba8aab7daa6eac685d81bc1e244286896d73e3efd334375727d1c8a9326890259f05f2495035f74858683d0d17891d36a50f4ecd465b7234e85624b69c909117a27676c5c1e9ffc999b3ab93ed866e845cdc43184b21c52a0c81024135154b00a73f655ad50f41c89e87aa90bee45fc02898d2dbb40d9f622b280b5fd45f345e2cc4a9d5c1fa24c59646d5b483cc70d40d923b8a405c862487a2355882b449923125d237541cbccee3f89e25a0a16e6cdd9eb0312dcb7b6e8627e3871e6a34eae0f658ba45ca9dcf79a8de5a16085585d04e1429056d650fd0a36ea8844cf451d6289e591e0286e4b676a9d2031ef809cf1d19f952b26d7070fb5a088c5b248634cadca69c1b5892378d607a149c4b842957344a2bb73e4ed90d852f9fb0409daa9f9b1c499833ab9be1f0a06e982e31407db6149148ce6a8a2ed378bb6a69202071a2b54af46247afea97b3324b655999822c1f9d07c24ceecd3c9f561f7a113596717c0fbc01387120e5c6624acd03edb885286976e23fae791e89aa752bec909281c4cd096528e13f3d48f1b2367317156c99c5cdf0fc5a1620479e6084a28a05879d250d5319342178a688d5aaf32d1ad602eb971e8d439ddd4aade1303045fc344c7fe386919167b27341c4c6a1e0e0a20aa05a248058cd3da2a2f4b90ebe51d17ac8fe526902fac0fdcde86c3d1fa70e3f12c33c1b8241713db43652f5c25568826532c182c1d9c7980953e91541c74c415f60c1dc0e84ac682471b4cc968e7a36e5632b87b330cf5f1f9f72cd3d3a621e6d451f1084ccb4c2b902f82d9b08187166d71d694927135362e18a60b869d5f6c53165b4a4e4f54c3cf3adfe008c025d998daa532969a2d0fa8e458801cb16ea0e308acba84c1586bd758a37564a3271c72c9c32f4e856353f1e7f1fc24d58e659cb32be0a7a77097c343cf2f9db60cb281b2923519b4329caa8ab60d3593855414192f85d57a8573b51ec77e5e3a23fedb5b007e629932b233f6ae1f1e7ec7343d691afc9044a55036a06a5bd729556d87282530255b4db689c80a476b1dc0e81aa78325f226e7fb6e543368bf3a684eb0f14cc0b9753a6d198ae0b516d1ca18caf80cd48e068fb926c851696155f116573810fc80c6a553e2bf3dd198d65970decaacc3d33f3750a72d83648840c97907d9b5a3726a8d103d473ab67ac28cbe56b726173d1375c1bae7b4c6e5b6959c9ce8851f53ea995c9cbba8d396c121c928426d1f145908dadc01de707e52aa0f55f8e89d5ee144d703173d2775c1e5165bd68be939bfb4a3d770716ea54e5b06bd30d291b2166ce264842467ab5106cd81b94cd6e7c801e80a476b1db8e8d9a9f8468221b7b5027c2a1824e7adc3797efce7c58c69cbb0a728255b64291cefb6d853d4022e2507559b549d8ac9d34b4f4159028c5e2963c1c873e38a710443cf3a71edf0f8cf6dd569cb783c8e2f41440d46b43d886402f00c12c09aaaa251dac65515a367ad7eabc7404f0ffcf5b37e77d5e1f19f9babd396a18c9153104e27885a3f9fa665b0fd66814859602e22ada9183d8395dee8ccdfe75fedb111304ecefc153b35e37c83c3e33faf7d4e5b06cb0451796b224735aaadce7199c17016bc2aa928c6a2e24b17fa2e0146aff2a917dc46746ab2f64e76fde5ff000000ffff0300d477c80320730000",
+      ],
+      {
+        "accept-ranges": "id, name",
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "3385",
+        "content-range": "name essential-0..standard-9",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:55 GMT",
+        etag: '"4cb2400e1b3b7223a9b5ca3883bbfa0b"',
+        "last-modified": "Wed, 08 May 2024 21:52:25 GMT",
+        "request-id":
+          "f376ad40-993a-4db1-b2ff-c47afdc3ac99,036fa66f-830c-3731-ba42-d1c007fa26e6,852e6d4d-505d-0a27-1d5d-307203003d2e",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 85245c859414f0ab9f7df4863076627e.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "UzslixbaJpKAlE67avUgXbREGuqvBmoJ1wwLWzZet4AvtionFEchGg==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.025759015",
+      },
+    );
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/nonexistent-addon/plans")
+    .reply(
+      404,
+      [
+        "1f8b0800d0dea86700032c8b310a80300c00bf12b2b8a80f70f521a598a8054da0495dc4bf1bc1f18ebb1b2b9bb6ba304e9889549271bd4a708f85428a7a5ab5098538d92c6f5f3a6b3b483a87b50881efd921ee4105fe7dc4e7050000ffff0300441246aa5c000000",
+      ],
+      {
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "105",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:56 GMT",
+        "request-id":
+          "80429668-b2fa-445f-b1ad-dc8e43ea935e,3079d720-d8f9-6fb9-7f02-067ce6b3021e,4a4eefe9-235e-f7dd-844f-7f5180f6f2f7",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 b481ede90908ed62958e1cf615981fc8.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "5zIUMoZgEXM4mQWXFXezUWmSdPXm3sPh9QoM-q-L5kw6WCBPkI-DSA==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Error from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.013243532",
+      },
+    );
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/heroku-postgresql/plans/bad-plan")
+    .reply(
+      404,
+      [
+        "1f8b0800d0dea867000314cb310e80200c40d1ab345d5cd403b87a10d25850126c0db493f1eec2faf2ff8b3536f57a44dc909855c2534870c6cc5d442d2475e10e776c8dced1edea856532485918ec2283be2e2a30de15bf1f0000ffff03005042557156000000",
+      ],
+      {
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "103",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:56 GMT",
+        "request-id":
+          "630393c7-9c8e-451b-a41a-32d4bf4eaf7e,a08e77ab-feaf-bc9b-8d94-983e11b8fbeb,25fdbec8-2475-36d7-5327-0272605982cd",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 bba99a59a85c763f7dd5d6e519a3dfbc.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "-6FKMbxbVGaCnNnmunlfgKcHY-mqnFUncJYdd1MAGDEER7v6Xf8ffw==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Error from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.014167321",
+      },
+    );
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/heroku-redis/plans")
+    .reply(
+      200,
+      [
+        "1f8b080034f287630003ec9adb6edb4610865fc5d0b507989d3def1314280a1488d18b0681b1c75a880e860e298a20efdea12827aa4d1586194b0ae23b92cbd5ce2c3fcdfc33e4fbcf9358ca7271bbaeab4fd35c27e1f3645a2661a2536ac65206b4cd80f299c06761a089929337d6a99226d793459cf39cc92f75b5fcb8bdfab5fe037fc4d9b65ebddb2c5775f2e57a9297f3fbd9342eba9f7eff81cf57356e6ab98d1b9e4648040241a81b12419840ea4ffed1525bdccef886cd6a5bbbd3755e4def37d3e5e2e85257bf4d17539e7ab79dc7c5eddeaafdb59d3f64aa4d455aa83612a81c13b8622c586363734615114577ef62bd89b3594cb37acbc7d3526fef57d34f6cf2eda26efe5eae3e4e428bb375fdefadcbed66f8dede83bd3d773bd36155cb741de6bd713ca3dff55c179bf52448c4ebc97631edb667be5c6cee26dd1e2e36ab9837fba57957d7f731d7db47fbc4e66cba65fe8a3c677b5f1eef33018a1bc4207450aedbe74fd3f594adefe77fb93e330a42031a106ca20ea2a3e13f28ec37fd592cfcbeaaf3e9767e858f81381cd8b9d60c56979c00f64c80229321b694211103a2926b644f4bc57d6f21e0001a42bf848dbd5dff07073f4b643ecc0dfa802e087ba97090ba4111b409a846c3218ec1211ee0c822da4424a12aa14019fe0379d92a588a5e26ad9dddb9767a38c470dc78830365200a727ce410474387f8163baad3e8d82fe6c082125e834b9941a9097d8d5444a5f3e031143c24078f5724447684900cfa0720440625c613424709a10742222a6b4ad250055650495648062360f12673fc283595f310420384981311e283c20b274405e9c713a28e12a2bea6989a3d5614904a62fd6195011f5b866aa4b142465d9c3a0f216a4880d0e910b95881da21428129c1f169e6680cf91a4212612a315610d2362e5ba4079fb4e02a26099f3026ddda5900198c206f1aa487430581a3e190c7e0905f15883731671321574aac400ae717c58428aa98acd5ac58cf2350e560f0782d3abada5600f91bc2d001222f9c0e1df478fda18fd1a11fe8f059f924badc62a8632225d6a7cd027a874588e4b43c4f6dab07e8a0574d2c3f52ec30418f8f1df6181df6810e4c59a24f154a13c889a569f09819916a62f1b1ca62ed59e8b0037458fd46474f870b389e0e7f8c0eff408770a6b0fc74c028706deb22414c7c5438a838c36b633b4f66f1439945fdd478b08982e5e10d5a2eac82a41178ec1ec760f3e36064e71cd72cba61c920928c5cda560b4e14044fa5e586be5932cf04a47fe8cfe263efcd3020bb7b879b1f0a7feaf4724888e0543b9e9081c2e560a4778e2b5a2164024bba6b7e748d3261398e78e646b92a35e9f3103254bad8d7ad6c7f2442685c8ad97330d0fc3818e9056a732d45c9e92d3a4e329dfa48b968d02547e26246ea9acf43c860f3e32d883c20226dd0723422031af5db40af51ab673c78d9ea24bb66b2072f1181ffacde936e06d573bb63df1790218deadfe8d8d3e1831a4fc78046fd36d0b7c6a2b7145d85a83b09e264a75151712d63b54f45175ffd59e818d4a83f75094308a881e846f8206420fb623cdedd4debac0c48d4c381be39e69c359988c9b01994e552d76b2ba0151985a3c657f1a478ac77161e11a8eed5a247b7f7bbcf2a84e6e2206875e178288678341e4ff4e9e1c0ce35a5bc6a5a6b48366a5094f9481a0b59cbea7d8e2d9ae756b8df178f2175ea5f4f7a3cc6c35f3c1eeae5afe61e2878224e0f0776aec998946dde816cb175ae1588283ca0a746a40c57bccf7db9ff7df11894a6de9c860f19505f321fae4358bc5c7cec3178a24c0faef71f1326cb7997eb15934502151d41aace839548de4a293d9e567aece918d2a5429c2a7628ba64367cf751a11a9d5a9ee8d283eb7de4a852c5861664940554cb86134bf5c0b90653249df289fb1e7b368654299d8e8d81f7f91ffe050000ffff030004c210787d2c0000",
+      ],
+      {
+        "accept-ranges": "id, name",
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "1420",
+        "content-range": "name mini..shield-9",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:56 GMT",
+        etag: '"8ebb31afc7bf5b43c37ae96405851095"',
+        "last-modified": "Thu, 01 Dec 2022 00:15:48 GMT",
+        "request-id":
+          "b4c4ca15-af69-4e9e-86fb-8a514edd7c06,7341187b-9582-67f6-7668-e9a0b7860627,35289a7b-e294-c821-d175-70d10fe2630f",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 302834fc5c34e9ec1e69c64f9c9a7610.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "Q1iaKwltPE7HOpBBguayyDM-AXq5XeZyoM_kAmrR1cC5jIIIjOQeFg==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.023189983",
+      },
+    );
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/heroku-kafka/plans")
+    .reply(
+      200,
+      [
+        "1f8b0800c740c65d0003cc9a5b6be35610c7bf4ad07306ce65ce4d6f2d140a7d296c9eba2ce15c1b13470eb69c1696fdee1d59eaee7aad986c6ccb0a26d8d1c89e99fc3cff9973cec7cf954f69d5dc6ff2fa651173557fae16a9aa2b6398941e0b24e93d60440d566604a7026352d3356dabdbaaf14f744ff5cbb38f0ff9e60f5f1efdcdaab9f93daf578fdbeacb6d15574fcfcb856fbab7fef8895eafb36f73baf72ddd261837c01c707ec76d2d45cde55ff4a62917bf5d9241bbdee6eee526ae17cfed62d5bcfa5137bffacd22de30bafb61fbe49bfbc1b16f7feea3d2aab0100a681e10d0f30c5ee902a6244c3e582b3174b6cda6f5cba50fcb7c4fcf1729df3faf172fe4f87d93db7f56ebc7aa2e7eb9c9fba6ab6d3b6edbc731b8f4b073181ebb00ead0f9079d7f74539ffe989b7653d59cd1cf6db56d165da69e564dfb5075e96cdab58fedf0f994e00de523df7f4dd9e01639d5761ff6b7a79bb6cf692fe75dc229ed770c6be16ae5ba9cbf2c360b8aa1f7f5cbed6cb020ff4ccdd41e16438c3fc1051fe782ffcf050a9b584a1a82e611d02905d665012666875e2893bdbe02177c8c0ba12ec705255db23b216a216ba566ce85ad853e910b31ce85f8ca8597dc06a740cb48f5c2450f8167fa2538550bad632047a7e7428c716126e1026bd433e442772e0a76c7187d416af57e2e7efbb7cd4dcae9504af6aef474188388543054f002d0a84060a082a47c344e04efb99b948e3cb8382a28c82ea928df08d1359ba3a27c4f88acd19e4ec881a8ec5dd90517722c182321210c070c9981cb5142e4b9381d301454d721644c5ad46484f0396acbf78460ade4e9841cc8cbde955d70a208cb33cb149cd6804a1a52184b98709d6262da0b73a51a322632d64c45088a9913627f1c567e86903ffbffc711b519b5d805cb3db51ed49780614a92ea4407d64809896529357267837c23313d056f0266886e8c98c1168eaacf74b545ccbd3fb1436b7d1e720e5468d46217accc2a1a4bddac2f1422a2a0675e38704c9350d1fc4b43f175c91953252da622479a9993e3a8ff3e1f3907ea346ab10bb6e822a9d94d50422e8082ca0dcdc79ada1a6d9db5366927ae4bcee848c4ec54e8f4ddc28cd151b53cbde87c687d93fcfa885ced59f42d70304985184031ea6db0380f5ed9449a25325a6d13ea7215743683abe3ab6fef24a777f1cde0a89acd1d1c3d2c109e079c57d56acfa2af3932479da506e373176ca138a5cc245e5e09970c8fce5c179c31b51213a995aa71ee3394a9919f8f9c57d56acf6298ba8b4a121508d5ade606122a87c5026995c9999a1d26d275c919532ba9275b9f99e36cf5d5454e624ad2fd6e723e3c2cf2321d19adc60cfa5023d3844784c23c753992f4ca9b6cc164c784cac514366dc5d9ec3c3d3e58e98b0e569c01e377d43d305b3336736c54adde5f707ea4e240a9c60cfa251c8a94224228a22b3742d240ae899dc27da1e0b58ffcbad88ce994515361c3f9ccb1b1c3e077166c0e646acc6017aa53ba5055892073216c2c13e08a33a059510ab370d6b1ab62333a52c9c9ca0d9fe334bee386b9eeb8022774c4a9dcbc3e518d19f4a132faeada20814b4a173247510a2a37867974221bcffdb4b3f8c0cdd179eab26df1376c4c2de7dedc743b9467c3e635953a1ca7324367994ce052a2e62646010135020fda65ed2dc6f0d6adeccb60333a4d5d74bfe17b6c10678e8d18b655cf82cd6b2a75384b2534ceaae2c10ba1008da7e686ab0096e552501a4b83d655b1195329c4a9b05173c44601eb1e776ce7e20987648ea8d3812c25eb79714e76f336b5334a71701a19049653288e2bc1a63d2a737c7defb2edefdc8fd7ed9669b8eb0a8bec76bb4f27e450880e14c887188b130142549a4a49e110acb0a00be1c1a91746f1d65272664246cfd94db477a0863d9d3912322ce4f15316f28e68ce81d8a08a999788e04da442222c03caad831cbd8d3a3ae3f3b4c7308f2fd84db6d4ab4646e84fff010000ffff0300d33bab85bb2d0000",
+      ],
+      {
+        "accept-ranges": "id, name",
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "1452",
+        "content-range": "name basic-0..standard-2",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:57 GMT",
+        etag: '"2acb03a59ae3ee806fd4a5d6eb383c85"',
+        "last-modified": "Sat, 09 Nov 2019 04:29:59 GMT",
+        "request-id":
+          "7fc3d10c-ebe8-4ff1-9786-3b1852d0f330,fd35dbbe-ce70-d3f1-0f8a-1960da2f0875,1b4aa702-a4e8-3714-06f3-f74efe02528e",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 02efbaf6ed6c3d3c5ed1fcd42c1a8f7e.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "gJ6VPKO1k9B_KsuEv0qPCxENWehcT6XgeXXkNbsMl6e-QccQnl6SGg==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.024660578",
+      },
+    );
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/heroku-postgresql/plans")
+    .reply(
+      200,
+      [
+        "1f8b080019f43b660003e49d4d6f1c371286ff4aa0730a6091c5afb92fb0871c0244076383c0e0672c4496bc929c0d10e4bf6f71ba35d3e3e1184a2bad6ec08061cbcd1989ec7ee66555bd24f5f39f5721e7fbbbf78fe5e1f79b54ae767f5edde4abdd9549c69257195c4d122865028f06812a9684986231feeafbabbbf091df73f5eff270ffdbe7ef7ebc7f7cfaf5a13c5efdf5fd55bafff8e9f626dcb5eff9f32ffcff87129e4a7e1f9ef8f5524805c28194d768764aecb4f80f7fb75c6af87ccb2f787af85cda7f1fd3c3cda7a79bfbbbf39ff1ddbf1e1fcbddd34db8fd4ef05b3f7cfe18eede8fdd396dda8f470b57ac23052ad80244fcf37d2203c5169f8bf5de496aafbd7b7c0ab7b721de96f7fcf54d2eef3f3ddcfcce3d7f7f579efe77fff0dbd5ae86dbc772fad2fbcf4ffdd70e0319bbf5613f02f8348ee0bfb7bbf2dc51681de5770f4f20f1c5c72bbe29e2fbabcf7737ed8e7dbcbf7bfa70d56eebddd343484f6337f8463f7e0aa9bc3fdcbab177dcb7a7f6337f0dfca6cf9ff2c9bd27109a6fffb5c41df99d36eddeff7ef378c34319bafcd7f79be042ee943de1621cdc4bc1c0cb60e0331849471d6475e02532189e2ab89c2d64ad75b03a1457f49a6060070cff066068dc49da2818247652bf060c79190cf90c4636267aa5db58b40672c58193518211d6d562a37621ac0986ec8021c55b9021c7bbbf1132901a19dc3741ad6f487f9f8c1f1fcac79bcf1fcf679269c37e3022056fb42ca065743c8418c15bef0015466b2807a756a0e2d3d0cdee2cd29858060a34207842c56ba9da1c2e70435034b9f020fdb56422b87b723e1478910a3c60e185d13a150f1c6310503619622e013209933319cb1ab21e16d8e582c46264f0dd470429aed1efd0eeb4dd10195fc8c510fdcc23e36c1a99360c83a959579f15146d3d90e5d833b8224049fe58865af85fb31e17bd2944e96f512e90894040dba050b41333a28be767af2e41a19ea1a068aacc052123f2601c2a08896758f449962c54c5baa258a80e14763928a6375eef84d8121453a5e0eef9f950d02528e890873015a86a05cf91050f212127a83e804e4e8b9442495ead070575a0c06f33b2602a507070712d3843759c8bcca7425fa2423f5321099535a2459a2dae08a4c0075b41c58881a7144f18d7a342f7c20abd1c1553ad10acd3dba2e2a8159ca1cea85b3c3f7c73890a73882abccfa9f0bd888c0150511c55d8ca5f692755411faacdeb51612e4515dfa4561ca97063dfe651612f51619fa9a88a9c0c19a1589d804491e0ab10108c2f3506cdc2e1d7a3c276a830cb65205f5221b74485de6747782de44e9a9d7c0515ee1215ee90991a21b11482c0e12567208967106704c8ec6bac1455f66e3d2a5c870af736330883416e4354480e2a24086a150bc554a8f954f84b54f803154525a3bd06a95361ada8111c53c2235232955c9dca653d2a7c2fdac405cb15d8b0e00f245ad6e89ddc9258b44216479c6e5fc87a5db8f9c3e5d0e287637041d926912b414ad170c8a91d04970c78294dcaaea22e753d346ebbe1052d97a0b6fb6ff6be83e30c70875b4a500736e45e32985be15ec3c645d1f8e1281bd525f232794e42f8034359b5ca855360a2963e975c4a5c51366efbc2b1604632c2817b38f88fda1c1c837030b8e21515f0775f518e7713e9485904537892f591a732b22e43204f50953349e6aa22ad186bfcd1d78e0583d0133c9e93c24de1316a87dae12b8a5befbe221eef26eaa145cc353882525842088d879892051b1426a75d526b86a27f5c908f656d92231ffc11f51be2a32550ba2550483bc21dceaa88ef9f44cf553d360c8389564529322815384991816718c199732666067508c1bcb4f8393ced1781310ee22b64ecdfd07555d53c2886de7d3545b12d71956a5c00a33795a24c4d5533ae0f99c744cf549db40c2b306295c66200adc8f274922d5311035411990eab6cf4723d2afaa6aa7b2353d56d582de497cbf9fe16191d53f5d830cc23c1185d2d93a8893314c2042157039cb8f0a48251bbfc525375012e7aa6aa59b4ced58a1a2d75e54fa5de544dfc506d69c6decc3518c3b3ef98aac786fd60620849459e42b2e28484bcafe0ac696a95393b21d2155f5a135f008a9ea9ba6041637ae751ecf4a66ae266df3775cd192b4f22f36ae2c3c3efb8aac786fd608a5612c91b5056615bc9972172daca5fd56ab2545e92588f8aaeabbaac53b2772378f66849e1964a19532aa41efb368f8a8eab7a6c18ca18d1e42034e7a9680550e41023a24ca0a2918aaaf642daf5a8e8baaaee6d5c55dc985332a5c2ce2c700d0fbf53c03836ec076391c3cae205d49038ac88b682b71c8b8b2451e712947bb1d7be00155d5775d9b862b3aeea840a26165f1157745cd563c3500ed75a8a94f963a938b86071c8e083e74c04b3b5e8937262c560b3e7aada6fd4551d1267df12e7a615b3fcb3e1e1775cd563c3408534819c51102aa3413a5988590970064d8e8e92482bc6153d57758836dfc056f5db128ba9ad4a9affccc7a253e43c36ec07130ca79efcbd2105c5416641053149df566470a461bc0e6b869bddf2a67a335b755b6efba1fcdd3ac682311f8bae39326dda0f4855d6851424689201489966a2d50cca252dc968e7ec4b37202e8046df1ad133ab9c7fdf1ad9d486a2136b448fd9f35c362e8ac6c418215d85d13581e30173e4e925cf26862049c309aa13ae9a97aedc5a848dae70e837f345d4a6e6938970683b2e589f0747df563d691bd2558d685d4c106c1b48291e9c771ab40d2cdf92279cb4626272c9565d2e633dc1c38e4b623687076bc7eba2d0bead7ad2366c492c5ee6a82c6025cdea212244d70a5d18a3d4da930f2b563e2fd9aa0b66295fc887de5496e2f6ab32384bd1cd28a119b9eb4f1f6eca6d3e775527d787d5189c9e72d0a9a0e4b61eb8449e55441060855346a24925ac30ab3cee7bd9f75417dd65a4f72e8969771db736a11c4c55372b41199ffcb9a73a6d180643a48b091594891c85525b17ac9a7fa6ac373c8d48615fbab8ef9f67a2eba8aab7daa6eac685d81bc1e244286896d73e3efd334375727d1c8a9326890259f05f2495035f74858683d0d17891d36a50f4ecd465b7234e85624b69c909117a27676c5c1e9ffc999b3ab93ed866e845cdc43184b21c52a0c81024135154b00a73f655ad50f41c89e87aa90bee45fc02898d2dbb40d9f622b280b5fd45f345e2cc4a9d5c1fa24c59646d5b483cc70d40d923b8a405c862487a2355882b449923125d237541cbccee3f89e25a0a16e6cdd9eb0312dcb7b6e8627e3871e6a34eae0f658ba45ca9dcf79a8de5a16085585d04e1429056d650fd0a36ea8844cf451d6289e591e0286e4b676a9d2031ef809cf1d19f952b26d7070fb5a088c5b248634cadca69c1b5892378d607a149c4b842957344a2bb73e4ed90d852f9fb0409daa9f9b1c499833ab9be1f0a06e982e31407db6149148ce6a8a2ed378bb6a69202071a2b54af46247afea97b3324b655999822c1f9d07c24ceecd3c9f561f7a113596717c0fbc01387120e5c6624acd03edb885286976e23fae791e89aa752bec909281c4cd096528e13f3d48f1b2367317156c99c5cdf0fc5a1620479e6084a28a05879d250d5319342178a688d5aaf32d1ad602eb971e8d439ddd4aade1303045fc344c7fe386919167b27341c4c6a1e0e0a20aa05a248058cd3da2a2f4b90ebe51d17ac8fe526902fac0fdcde86c3d1fa70e3f12c33c1b8241713db43652f5c25568826532c182c1d9c7980953e91541c74c415f60c1dc0e84ac682471b4cc968e7a36e5632b87b330cf5f1f9f72cd3d3a621e6d451f1084ccb4c2b902f82d9b08187166d71d694927135362e18a60b869d5f6c53165b4a4e4f54c3cf3adfe008c025d998daa532969a2d0fa8e458801cb16ea0e308acba84c1586bd758a37564a3271c72c9c32f4e856353f1e7f1fc24d58e659cb32be0a7a77097c343cf2f9db60cb281b2923519b4329caa8ab60d3593855414192f85d57a8573b51ec77e5e3a23fedb5b007e629932b233f6ae1f1e7ec7343d691afc9044a55036a06a5bd729556d87282530255b4db689c80a476b1dc0e81aa78325f226e7fb6e543368bf3a684eb0f14cc0b9753a6d198ae0b516d1ca18caf80cd48e068fb926c851696155f116573810fc80c6a553e2bf3dd198d65970decaacc3d33f3750a72d83648840c97907d9b5a3726a8d103d473ab67ac28cbe56b726173d1375c1bae7b4c6e5b6959c9ce8851f53ea995c9cbba8d396c121c928426d1f145908dadc01de707e52aa0f55f8e89d5ee144d703173d2775c1e5165bd68be939bfb4a3d770716ea54e5b06bd30d291b2166ce264842467ab5106cd81b94cd6e7c801e80a476b1db8e8d9a9f8468221b7b5027c2a1824e7adc3797efce7c58c69cbb0a728255b64291cefb6d853d4022e2507559b549d8ac9d34b4f4159028c5e2963c1c873e38a710443cf3a71edf0f8cf6dd569cb783c8e2f41440d46b43d886402f00c12c09aaaa251dac65515a367ad7eabc7404f0ffcf5b37e77d5e1f19f9babd396a18c9153104e27885a3f9fa665b0fd66814859602e22ada9183d8395dee8ccdfe75fedb111304ecefc153b35e37c83c3e33faf7d4e5b06cb0451796b224735aaadce7199c17016bc2aa928c6a2e24b17fa2e0146aff2a917dc46746ab2f64e76fde5ff000000ffff0300d477c80320730000",
+      ],
+      {
+        "accept-ranges": "id, name",
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "3385",
+        "content-range": "name essential-0..standard-9",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:57 GMT",
+        etag: '"4cb2400e1b3b7223a9b5ca3883bbfa0b"',
+        "last-modified": "Wed, 08 May 2024 21:52:25 GMT",
+        "request-id":
+          "3e508ed5-beb4-460a-8686-3899133f4305,3d4c3d75-b87f-bd83-8115-14597bd41ef9,989439f0-fca2-e2c9-ac74-73ac0de585d5",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 f0f31e95ac261ee02dea9c554605a186.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "7VKEMTxebQd7GrpEkoX4ZFUn_vv8cHVErdCYlNdEWARF98ywrs4Bkw==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.030488955",
+      },
+    );
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/heroku-postgresql/plans/essential-0")
+    .reply(
+      200,
+      [
+        "1f8b080084f33b6600036c91cd6ec32010845f25e21c246ce31fb857eab1879c5a5516814d8382c1059c1ea2bc7b97c4ad14b537166677bf192e441913fc98209ead06222fc41a2249a7bb9e8bc6d0e1a06bcab5e154545d45f9a1025d557a0f9d205be2d5843de41962382d9b9790f2478444ae5ba2c3343bab7c99f9f68e750495c18c2aa3be667543d940eb7a5775b261b265af38cdc0412d0e05392e50caa4a39db30dfeef8ecd534ae0b3556ec3b0f5b84cca8f2bcee3d3cd4fcb06e807ded046f54039c7fd42f38e420fc2402fc450f3a2f5292be7d4dec188676b609ca33d23f9e8217f857822f2a05c82476958f2ffdabb9115eb787340e7d5c1a793f0034a0b2876df7f40e36522180adb92c5db92d8147c3e9212abcf51e9bc6260d069561ac6dfe8563a64cb65e787c2a665360fd973ca5a8c7f5757920bd97625fbb34d16addc91afdf000000ffff030045bb14c517020000",
+      ],
+      {
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "344",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:57 GMT",
+        etag: '"bdb95d74e04b059021d92faaac8b5f18"',
+        "last-modified": "Wed, 08 May 2024 21:49:56 GMT",
+        "request-id":
+          "85fc6600-2fed-4f56-aeef-c77a0c40c8ef,1f506042-6de9-522f-fbcd-6683f181d69a,8fbc32cd-b6c4-54f8-4415-e7a0ea219756",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 d197f8a5ee91a2a382d846998b15ceb6.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "D1RRjhsGeILgN2RePRURz37qOoap5UOetJGGrDNse40o8rRmsPlXAw==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.013188277",
+      },
+    );
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/heroku-postgresql/plans/essential-1")
+    .reply(
+      200,
+      [
+        "1f8b0800dcf33b6600036c91cb6ec32010457f25621d24838d1fec2b75d94556ad2a6b02e30605631770ba88f2ef85bcd4b4dd317067e6dec39180d693eb03fa835148e491184d24a955dd545da9693b284e2ba52bdab19ad16a60a818535bac3bb2260ec6d4439ed14ffb65f53285f8e13190d39aa8699cad019767bebda7da2344d43dc4a4e7052f69d152ce37ac96259765f39aa6691c60b14930800d98eba0bc99a399dcdf25aba710d0450376c552ef6e19c1f5573f8f4fe7404a6c05f0a1a51d6748abae1a68ab7543b510021a01d8a2c85a1722580b5b8b7d3a1b8dfdeccd2159ef1dc6afc9efefee7e4aa725feaf8d7ec13ba6dd39019daf093eadc49b519a8da6eecb17a8741988ec8a624d166732b2717271473257173da81ba4443acca0b0ffcd2e798b79e707a4a665d60ff02b5a88c47fc399144cf22ac33f986052948be5d337000000ffff03009f3d756218020000",
+      ],
+      {
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "342",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:57 GMT",
+        etag: '"389ee68d840da21e8f48a1383f07f5e6"',
+        "last-modified": "Wed, 08 May 2024 21:51:24 GMT",
+        "request-id":
+          "9fff4912-eeeb-4f63-b47d-5b081f0b985b,12bd43f4-0938-d53d-d4d7-af9b6b501d8a,62a2f1c8-6252-b823-2231-9d4aa16874f1",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 050d939953f5c92a3b38475f9313802a.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "yH2LU7EJjnuRFkXU4LNnyQ7ybCV7hDjLUOOtBtsx6queIRIL9RIlVA==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.017879185",
+      },
+    );
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/heroku-postgresql/plans/essential-0")
+    .reply(
+      200,
+      [
+        "1f8b080084f33b6600036c91cd6ec32010845f25e21c246ce31fb857eab1879c5a5516814d8382c1059c1ea2bc7b97c4ad14b537166677bf192e441913fc98209ead06222fc41a2249a7bb9e8bc6d0e1a06bcab5e154545d45f9a1025d557a0f9d205be2d5843de41962382d9b9790f2478444ae5ba2c3343bab7c99f9f68e750495c18c2aa3be667543d940eb7a5775b261b265af38cdc0412d0e05392e50caa4a39db30dfeef8ecd534ae0b3556ec3b0f5b84cca8f2bcee3d3cd4fcb06e807ded046f54039c7fd42f38e420fc2402fc450f3a2f5292be7d4dec188676b609ca33d23f9e8217f857822f2a05c82476958f2ffdabb9115eb787340e7d5c1a793f0034a0b2876df7f40e36522180adb92c5db92d8147c3e9212abcf51e9bc6260d069561ac6dfe8563a64cb65e787c2a665360fd973ca5a8c7f5757920bd97625fbb34d16addc91afdf000000ffff030045bb14c517020000",
+      ],
+      {
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "344",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:57 GMT",
+        etag: '"bdb95d74e04b059021d92faaac8b5f18"',
+        "last-modified": "Wed, 08 May 2024 21:49:56 GMT",
+        "request-id":
+          "5c8a0c3c-2b38-4b7e-b07e-be82356bbb30,66c25e0e-018b-1f47-c414-0a8732711d89,e3d21433-f847-b26d-9b09-0430c8e196d8",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 36f8f6f8e66dd31402843e052055ba4a.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "CATg_4W8V4RfKjGZvZmQnWdO1jKPCDu91w4gW7Gy7LwRP-sjpyqXuQ==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.014575049",
+      },
+    );
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/heroku-postgresql/plans/essential-0")
+    .reply(
+      200,
+      [
+        "1f8b080084f33b6600036c91cd6ec32010845f25e21c246ce31fb857eab1879c5a5516814d8382c1059c1ea2bc7b97c4ad14b537166677bf192e441913fc98209ead06222fc41a2249a7bb9e8bc6d0e1a06bcab5e154545d45f9a1025d557a0f9d205be2d5843de41962382d9b9790f2478444ae5ba2c3343bab7c99f9f68e750495c18c2aa3be667543d940eb7a5775b261b265af38cdc0412d0e05392e50caa4a39db30dfeef8ecd534ae0b3556ec3b0f5b84cca8f2bcee3d3cd4fcb06e807ded046f54039c7fd42f38e420fc2402fc450f3a2f5292be7d4dec188676b609ca33d23f9e8217f857822f2a05c82476958f2ffdabb9115eb787340e7d5c1a793f0034a0b2876df7f40e36522180adb92c5db92d8147c3e9212abcf51e9bc6260d069561ac6dfe8563a64cb65e787c2a665360fd973ca5a8c7f5757920bd97625fbb34d16addc91afdf000000ffff030045bb14c517020000",
+      ],
+      {
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "344",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:58 GMT",
+        etag: '"bdb95d74e04b059021d92faaac8b5f18"',
+        "last-modified": "Wed, 08 May 2024 21:49:56 GMT",
+        "request-id":
+          "b45a3b2d-9abc-4093-b511-774b66ec2ed4,58237a57-74ac-dd44-0bab-46ee439b04cd,08c52f96-ac81-baf9-a261-c1f61690455e",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 e8562587f0ff484dff67f98bff7aa74c.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "6wUrLeY1YgnTPtWa7o8yggAnkNz-1pHNkgrmIngqMDIBanjMtzxEBg==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.013857298",
+      },
+    );
+  nock("https://api.heroku.com:443", { encodedQueryParams: true })
+    .get("/addon-services/heroku-postgresql/plans/essential-1")
+    .reply(
+      200,
+      [
+        "1f8b0800dcf33b6600036c91cb6ec32010457f25621d24838d1fec2b75d94556ad2a6b02e30605631770ba88f2ef85bcd4b4dd317067e6dec39180d693eb03fa835148e491184d24a955dd545da9693b284e2ba52bdab19ad16a60a818535bac3bb2260ec6d4439ed14ffb65f53285f8e13190d39aa8699cad019767bebda7da2344d43dc4a4e7052f69d152ce37ac96259765f39aa6691c60b14930800d98eba0bc99a399dcdf25aba710d0450376c552ef6e19c1f5573f8f4fe7404a6c05f0a1a51d6748abae1a68ab7543b510021a01d8a2c85a1722580b5b8b7d3a1b8dfdeccd2159ef1dc6afc9efefee7e4aa725feaf8d7ec13ba6dd39019daf093eadc49b519a8da6eecb17a8741988ec8a624d166732b2717271473257173da81ba4443acca0b0ffcd2e798b79e707a4a665d60ff02b5a88c47fc399144cf22ac33f986052948be5d337000000ffff03009f3d756218020000",
+      ],
+      {
+        "cache-control": "private, no-cache",
+        connection: "close",
+        "content-encoding": "gzip",
+        "content-length": "342",
+        "content-type": "application/json",
+        date: "Sun, 09 Feb 2025 16:58:58 GMT",
+        etag: '"389ee68d840da21e8f48a1383f07f5e6"',
+        "last-modified": "Wed, 08 May 2024 21:51:24 GMT",
+        "request-id":
+          "637e9875-a1f4-4d1d-835f-7b35298e3197,c3521dae-54db-2118-325a-a921fa23d352,52768e22-5e41-e9c4-f8d8-31d480bfd6e5",
+        vary: "Authorization,Accept-Encoding",
+        via: "1.1 spaces-router (3ec5bdba973c), 1.1 spaces-router (3ec5bdba973c), 1.1 4cafceb008e6fb971d9321d02b918f8e.cloudfront.net (CloudFront)",
+        "x-amz-cf-id":
+          "12epqWwQVhHIwlKsiIWAQGh29QrUFG5LDu_sf3xp7sN_lZaqkEyedQ==",
+        "x-amz-cf-pop": "LHR61-P4",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-runtime": "0.014232985",
+      },
+    );
+  nock.disableNetConnect();
+});
+
+mocha.after(() => {
+  nock.cleanAll();
+  nock.enableNetConnect();
+});

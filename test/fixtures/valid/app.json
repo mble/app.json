@@ -18,8 +18,5 @@
       "default": 5
     }
   },
-  "addons": [
-    "openredis",
-    "mongolab:shared-single-small"
-  ]
+  "addons": ["openredis", "mongolab:shared-single-small"]
 }
