@@ -3,13 +3,8 @@
   "version": "1.3.0",
   "description": "Create, validate, and render Heroku app.json manifests",
   "main": "index.js",
-  "bin": {
-    "app.json": "./bin/cli",
-    "app": "./bin/cli",
-    "apps": "./bin/cli"
-  },
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --file test/setup.js",
     "build": "npm run bundle; npm run minify; npm run bundle-lite; npm run minify-lite; npm run doc; ls -alh dist | grep app.json",
     "bundle": "browserify index.js --transform browserify-hogan --standalone App > dist/app.json.js",
     "bundle-lite": "browserify lib/app.js --transform browserify-hogan --standalone App > dist/app.json.lite.js",
@@ -52,8 +47,10 @@
   },
   "devDependencies": {
     "browserify": "^17.0.1",
+    "browserify-hogan": "^0.1.2",
     "cheerio": "^1.0.0",
     "mocha": "^11.1.0",
+    "nock": "^14.0.1",
     "prettier": "^3.5.0",
     "uglify-js": "^3.19.3"
   }

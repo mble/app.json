@@ -11,7 +11,7 @@ describe("App", function () {
   beforeEach(function () {
     app = null;
     payload = JSON.parse(
-      fs.readFileSync(__dirname + "/fixtures/valid/app.json")
+      fs.readFileSync(__dirname + "/fixtures/valid/app.json"),
     );
   });
 

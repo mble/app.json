@@ -50,7 +50,9 @@ describe("App", function () {
     it("throws a semi-helpful error when given a malformed JSON string", function () {
       assert.throws(function () {
         App.new(
-          fs.readFileSync(__dirname + "/fixtures/malformed/app.json").toString()
+          fs
+            .readFileSync(__dirname + "/fixtures/malformed/app.json")
+            .toString(),
         );
       }, /malformed JSON/i);
     });
@@ -80,7 +82,7 @@ describe("App", function () {
       assert.equal(app.errors[0].property, "name");
       assert.equal(
         app.errors[0].message,
-        "is too short (minimum is 3 characters)"
+        "is too short (minimum is 3 characters)",
       );
     });
 
@@ -92,7 +94,7 @@ describe("App", function () {
       assert.equal(app.errors[0].property, "name");
       assert.equal(
         app.errors[0].message,
-        "is too long (maximum is 30 characters)"
+        "is too long (maximum is 30 characters)",
       );
     });
 
@@ -108,7 +110,7 @@ describe("App", function () {
       assert.equal(app.errors[0].property, "description");
       assert.equal(
         app.errors[0].message,
-        "is too long (maximum is 140 characters)"
+        "is too long (maximum is 140 characters)",
       );
     });
 
@@ -154,7 +156,7 @@ describe("App", function () {
       assert.equal(app.errors.length, 2);
       assert.equal(
         app.errorString,
-        "- name is too short (minimum is 3 characters)\n- website is not a valid url"
+        "- name is too short (minimum is 3 characters)\n- website is not a valid url",
       );
     });
 

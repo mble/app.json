@@ -3,8 +3,6 @@ var assert = require("assert");
 var addons = require("../lib/addons");
 
 describe("addons.getPlan()", function () {
-  this.timeout(3000);
-
   describe("with an addon:plan argument", function () {
     it("accepts an addon:plan string", function (done) {
       addons.getPlan("heroku-postgresql:essential-0", function (err, plan) {
@@ -35,14 +33,14 @@ describe("addons.getPlan()", function () {
     it("returns a logo URL when given an addon:plan slug", function () {
       assert.equal(
         plan.logo,
-        "https://addons.heroku.com/addons/heroku-postgresql/icons/original.png"
+        "https://addons.heroku.com/addons/heroku-postgresql/icons/original.png",
       );
     });
 
     it("returns a logo URL given a plan-free slug", function () {
       assert.equal(
         plan.logo,
-        "https://addons.heroku.com/addons/heroku-postgresql/icons/original.png"
+        "https://addons.heroku.com/addons/heroku-postgresql/icons/original.png",
       );
     });
   });

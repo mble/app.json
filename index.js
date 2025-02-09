@@ -19,13 +19,13 @@ App.prototype.getAddonPrices = function (cb) {
 App.templates = {};
 if (module.parent) {
   App.templates.app = hogan.compile(
-    fs.readFileSync(__dirname + "/templates/app.mustache.html").toString()
+    fs.readFileSync(__dirname + "/templates/app.mustache.html").toString(),
   );
   App.templates.build = hogan.compile(
-    fs.readFileSync(__dirname + "/templates/build.mustache.html").toString()
+    fs.readFileSync(__dirname + "/templates/build.mustache.html").toString(),
   );
   App.templates.schema = hogan.compile(
-    fs.readFileSync(__dirname + "/templates/schema.mustache.md").toString()
+    fs.readFileSync(__dirname + "/templates/schema.mustache.md").toString(),
   );
 } else {
   App.templates.app = require("./templates/app.mustache.html");
