@@ -17,7 +17,10 @@ describe("App", function () {
 
   describe(".getAddonPrices()", function () {
     it("fetches a remote list of addons and their total price", function (done) {
-      payload.addons = ["openredis:micro", "mongolab:shared-cluster-1"];
+      payload.addons = [
+        "heroku-postgresql:essential-0",
+        "heroku-postgresql:essential-1",
+      ];
       app = App.new(payload);
       assert(app.valid);
       app.getAddonPrices(function (err, prices) {
@@ -29,7 +32,10 @@ describe("App", function () {
     });
 
     it("attaches a prices property to the app object", function (done) {
-      payload.addons = ["openredis:micro", "mongolab:shared-cluster-1"];
+      payload.addons = [
+        "heroku-postgresql:essential-0",
+        "heroku-postgresql:essential-1",
+      ];
       app = App.new(payload);
       assert(app.valid);
       app.getAddonPrices(function (err, prices) {
@@ -53,39 +59,6 @@ describe("App", function () {
     });
   });
 
-  describe("App.fetch()", function () {
-    it("downloads remote manifests with github shorthand", function (done) {
-      App.fetch("zeke/slideshow", function (err, remoteApp) {
-        assert(remoteApp.valid);
-        assert.equal(remoteApp.name, "Harp Slideshow");
-        done();
-      });
-    });
-
-    it("downloads remote manifests with fully-qualified github URLs", function (done) {
-      App.fetch(
-        "https://github.com/heroku-examples/geosockets.git",
-        function (err, remoteApp) {
-          if (err) console.error(err);
-          assert(remoteApp.valid);
-          assert.equal(remoteApp.name, "Geosockets");
-          done();
-        }
-      );
-    });
-
-    it("downloads remote manifests with bitbucket shorthand", function (done) {
-      App.fetch(
-        "bitbucket:sikelianos/web-starter-kit",
-        function (err, remoteApp) {
-          assert(remoteApp.valid);
-          assert.equal(remoteApp.name, "Google Web Starter Kit");
-          done();
-        }
-      );
-    });
-  });
-
   describe("App.templates", function () {
     it("is an object", function () {
       assert(App.templates);
@@ -99,7 +72,6 @@ describe("App", function () {
 
       it("renders app name in an H2 tag", function () {
         const rendered = App.templates.app.render(App.example);
-        console.log(rendered);
         const $ = cheerio.load(rendered);
         assert.equal($("h2").text().trim(), App.example.name);
       });

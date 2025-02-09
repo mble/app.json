@@ -38,10 +38,6 @@
   "dependencies": {
     "async": "^3.2.6",
     "bitbucket-url-to-object": "^0.3.0",
-    "brfs": "^2.0.2",
-    "browserify-hogan": "^0.3.0",
-    "chalk": "^5.4.1",
-    "commander": "^13.1.0",
     "github-url-to-object": "^4.0.6",
     "heroku-client": "^3.1.0",
     "hogan.js": "^3.0.2",
@@ -49,19 +45,15 @@
     "is-url": "^1.2.4",
     "js-yaml": "^4.1.0",
     "marked": "^15.0.6",
-    "merge": "^2.1.1",
     "netrc": "^0.1.4",
-    "open": "10.1.0",
     "redact-url": "^0.4.0",
     "revalidator": "^0.3.1",
-    "superagent": "^10.1.1",
-    "to-title-case": "^1.0.0"
+    "superagent": "^10.1.1"
   },
   "devDependencies": {
     "browserify": "^17.0.1",
     "cheerio": "^1.0.0",
     "mocha": "^11.1.0",
-    "nixt": "^0.5.1",
     "prettier": "^3.5.0",
     "uglify-js": "^3.19.3"
   }

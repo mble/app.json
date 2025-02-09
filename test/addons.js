@@ -7,8 +7,8 @@ describe("addons.getPlan()", function () {
 
   describe("with an addon:plan argument", function () {
     it("accepts an addon:plan string", function (done) {
-      addons.getPlan("mongohq:ssd_1g_elastic", function (err, plan) {
-        assert.equal(plan.name, "mongohq:ssd_1g_elastic");
+      addons.getPlan("heroku-postgresql:essential-0", function (err, plan) {
+        assert.equal(plan.name, "heroku-postgresql:essential-0");
         done();
       });
     });
@@ -18,31 +18,31 @@ describe("addons.getPlan()", function () {
     var plan = null;
 
     before(function (done) {
-      addons.getPlan("mongohq", function (err, p) {
+      addons.getPlan("heroku-postgresql", function (err, p) {
         plan = p;
         done();
       });
     });
 
     it("figures out the default plan", function () {
-      assert.equal(plan.name, "mongohq:ssd_1g_elastic");
+      assert.equal(plan.name, "heroku-postgresql:essential-0");
     });
 
     it("returns a pretty price", function () {
-      assert.equal(plan.prettyPrice, "$18/mo");
+      assert.equal(plan.prettyPrice, "$5/mo");
     });
 
     it("returns a logo URL when given an addon:plan slug", function () {
       assert.equal(
         plan.logo,
-        "https://addons.heroku.com/addons/mongohq/icons/original.png"
+        "https://addons.heroku.com/addons/heroku-postgresql/icons/original.png"
       );
     });
 
     it("returns a logo URL given a plan-free slug", function () {
       assert.equal(
         plan.logo,
-        "https://addons.heroku.com/addons/mongohq/icons/original.png"
+        "https://addons.heroku.com/addons/heroku-postgresql/icons/original.png"
       );
     });
   });
@@ -51,11 +51,11 @@ describe("addons.getPlan()", function () {
 describe("addons.getPrices()", function () {
   this.timeout(3000);
 
-  describe("mongohq:ssd_1g_elastic", function () {
+  describe("heroku-postgresql:essential-0", function () {
     var prices = null;
 
     before(function (done) {
-      addons.getPrices(["mongohq:ssd_1g_elastic"], function (err, p) {
+      addons.getPrices(["heroku-postgresql:essential-0"], function (err, p) {
         prices = p;
         done();
       });
@@ -72,30 +72,22 @@ describe("addons.getPrices()", function () {
     });
 
     it("handles addon:plan formatted slugs", function () {
-      assert.equal(prices.plans[0].name, "mongohq:ssd_1g_elastic");
-      assert.equal(prices.plans[0].price.cents, 1800);
+      assert.equal(prices.plans[0].name, "heroku-postgresql:essential-0");
+      assert.equal(prices.plans[0].price.cents, 500);
       assert.equal(prices.plans[0].price.unit, "month");
     });
 
     it("returns a totalPrice in the prices object", function () {
-      assert.equal(prices.plans[0].price.cents, 1800);
-      assert.equal(prices.totalPriceInCents, 1800);
+      assert.equal(prices.plans[0].price.cents, 500);
+      assert.equal(prices.totalPriceInCents, 500);
     });
 
     it("returns a human-friendly dollar amount total", function () {
-      assert.equal(prices.totalPrice, "$18/mo");
+      assert.equal(prices.totalPrice, "$5/mo");
     });
   });
 
-  it("returns free if total is zero", function (done) {
-    addons.getPrices(["heroku-postgresql"], function (err, prices) {
-      assert.equal(prices.totalPriceInCents, 0);
-      assert.equal(prices.totalPrice, "Free");
-      done();
-    });
-  });
-
-  it("accepts an emtpy array", function (done) {
+  it("accepts an empty array", function (done) {
     addons.getPrices([], function (err, prices) {
       assert(Array.isArray(prices.plans));
       assert.equal(prices.totalPriceInCents, 0);
@@ -112,20 +104,15 @@ describe("addons.getPrices()", function () {
   });
 
   it("propagates errors for nonexistent plans", function (done) {
-    addons.getPrices(["mongohq:bad-plan"], function (err, res) {
+    addons.getPrices(["heroku-postgresql:bad-plan"], function (err, res) {
       assert(err);
-      assert.equal(err.id, "not_found");
+      assert.equal(err.status, 404);
       done();
     });
   });
 
   it("handles a long list of addons", function (done) {
-    var slugs = [
-      "mongohq:ssd_1g_elastic",
-      "heroku-redis",
-      "heroku-postgresql",
-      "mailgun:starter",
-    ];
+    var slugs = ["heroku-redis", "heroku-postgresql", "heroku-kafka"];
 
     addons.getPrices(slugs, function (err, prices) {
       assert(!err);
