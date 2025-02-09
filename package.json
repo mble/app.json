@@ -12,7 +12,8 @@
     "minify-lite": "cat dist/app.json.lite.js | uglifyjs -o dist/app.json.lite.min.js",
     "doc": "bin/doc",
     "docs": "bin/doc",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "lint": "prettier --check lib/*.js test/*.js"
   },
   "repository": {
     "type": "git",
